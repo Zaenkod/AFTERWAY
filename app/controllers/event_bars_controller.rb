@@ -1,0 +1,2 @@
+class EventBarsController < ApplicationController
+end
