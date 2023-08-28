@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_28_124535) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_28_135423) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,17 +20,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_124535) do
     t.integer "price"
     t.string "category"
     t.string "description"
-    t.string "picture"
     t.float "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "event_bars", force: :cascade do |t|
-    t.integer "vote"
-    t.string "status"
     t.bigint "event_id", null: false
     t.bigint "bar_id", null: false
+    t.integer "vote"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bar_id"], name: "index_event_bars_on_bar_id"
@@ -39,8 +38,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_28_124535) do
 
   create_table "events", force: :cascade do |t|
     t.string "name"
-    t.string "address"
     t.date "date"
+    t.string "address"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

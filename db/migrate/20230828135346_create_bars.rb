@@ -6,7 +6,6 @@ class CreateBars < ActiveRecord::Migration[7.0]
       t.integer :price
       t.string :category
       t.string :description
-      t.string :picture
       t.float :rating
 
       t.timestamps
