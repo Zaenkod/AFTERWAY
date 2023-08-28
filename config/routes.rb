@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   resources :users, only: %i[show]
 
   get "bars/:id", to: "bars#show", as: :bar
+  get "/myevents", to: "events#myevents", as: "myevents"
 end

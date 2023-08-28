@@ -1,2 +1,42 @@
 class EventsController < ApplicationController
+  def new
+    @user = User.find(current_user.id)
+    @event = Event.new
+  end
+
+  def create
+    @event = Event.new(event_params)
+    @user = User.find(current_user.id)
+    @event.user = @user
+    if @event.save
+      redirect_to myevents_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def show
+    @event = Event.find(params[:id])
+    @event_bars = @event.event_bars
+    @my_events = @event_bars.where(user: current_user)
+  end
+
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to myevents_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def event_params
+    params.require(:event).permit(:name, :date, :address, :user_id)
+  end
 end
