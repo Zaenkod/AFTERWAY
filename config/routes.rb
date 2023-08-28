@@ -5,4 +5,12 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  resources :events, only: %i[new create show update] do
+    resources :event_bars, only: %i[show update]
+  end
+
+  resources :users, only: %i[show]
+
+  get "bars/:id", to: "bars#show", as: :bar
 end
