@@ -1,0 +1,7 @@
+<h1>List of bars</h1>
+<% @bars.each do |bar| %>
+<p><%= bar.name %> <h3 class="mb-2"><%= link_to bar.name, bar_path(bar) %></h3></p>
+<p><%= bar.address %></p>
+<p><%= bar.category %></p>
+<p><%= bar.description %></p>
+<% end %>
