@@ -15,3 +15,4 @@ Rails.application.routes.draw do
 
   get "/myevents", to: "events#myevents", as: "myevents"
 
+end
