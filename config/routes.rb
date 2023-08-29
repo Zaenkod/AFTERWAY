@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :events, only: %i[new create show update] do
-    resources :event_bars, only: %i[show update]
+    resources :event_bars, only: %i[index update]
   end
 
   resources :users, only: %i[show]

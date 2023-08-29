@@ -9,7 +9,8 @@ class EventsController < ApplicationController
     @user = User.find(current_user.id)
     @event.user = @user
     if @event.save
-      redirect_to myevents_path
+      @event.bars << Bar.all
+      redirect_to event_path(@event)
     else
       render :new, status: :unprocessable_entity
     end

@@ -34,4 +34,8 @@ bar2 = Bar.create!(
 )
 
 puts "Create User"
-user = User.create!(first_name: "Nathaly", last_name: "Gomez", address:"4 rue d'Alsace, Asnières-Sur-Seine", email: "nath@gmail.com", password: "123456")
+user1 = User.create!(first_name: "Nathaly", last_name: "Gomez", address:"4 rue d'Alsace, Asnières-Sur-Seine", email: "nath@gmail.com", password: "123456")
+
+puts "create event"
+event = user1.events.new(date: "31/08/2023", address: "3 rue Saint Maur, Paris", hour: "20:00", travel_time: 5, category: "Wine bars", price: "10", title: "les copains d'abord")
+event.save!

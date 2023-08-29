@@ -9,7 +9,7 @@
     <%= f.input :address %>
     <%= f.input :travel_time %>
     <%= f.input :category %>
-    <%= f.input :participants %>
+    <%= f.association :users, label_method: :unique_user %>
     <%= f.button :submit, class: "btn btn-primary"  %>
   <% end %>
 </div>
