@@ -1,9 +1,15 @@
-<div class="container mt-5 border rounded-5 p-5">
-  <h1>Create my event</h1>
+<div class="container mt-5 border rounded-5 p-5" >
+  <h1>Your afterwork</h1>
   <%= simple_form_for (@event) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :date %>
+    <%= f.input :title %>
+    <%= f.input :date,
+                as: :string,
+                input_html: { data: { controller: "datepicker" } } %>
+    <%= f.input :hour %>
     <%= f.input :address %>
-    <%= f.button :submit, class: "btn btn-small-white"  %>
+    <%= f.input :travel_time %>
+    <%= f.input :category %>
+    <%= f.input :participants %>
+    <%= f.button :submit, class: "btn btn-primary"  %>
   <% end %>
 </div>
