@@ -17,8 +17,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    @event_bars = @event.event_bars
-    @my_events = @event_bars.where(user: current_user)
+    # @event_bars = @event.event_bars
+    # @my_events = @event_bars.where(user: current_user)
   end
 
   def edit
