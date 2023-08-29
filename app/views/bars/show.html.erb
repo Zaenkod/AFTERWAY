@@ -1,8 +1,43 @@
-<h1>My bar </h1>
-<p><%= @bar.name %></p>
-<p><%= @bar.address %></p>
-<p><%= @bar.category %></p>
-<p><%= @bar.description %></p></h1>
+<div class="container">
+  <section class="mx-auto my-5" style="max-width: 23rem;">
 
+    <div class="card">
+      <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+        <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2748&q=80" class="img-fluid" />
+      </div>
+        <div class="card-body-bar">
+          <h3 class="card-title font-weight-bold"><p><%= @bar.name %></p></h3>
+          <p><%= @bar.address %></p>
+            <div class="d-flex justify-content-around">
+              <div class="Stars" style="--rating: 2.3;" aria-label="Rating of this product is 2.3 out of 5.">
+              </div>
+                <p class="text-muted"><%= @bar.rating %></p>
+            </div>
+          <p class="mb-2 text-center">$ • <%= @bar.category %></p>
+          <div class="card-bar-description">
+            <p class="card-text"><strong>Description :</strong><%= @bar.description %></p>
+          </div>
+          <hr class="my-4" />
 
-<h3 class="mb-2"><%= link_to "Return", bars_path %></h3>
+          <p class="lead text-center"><strong>Opening hours</strong></p>
+          <ul class="list-unstyled list-inline d-flex justify-content-between">
+            <li class="list-inline-item me-0">
+              <div class="chip me-0"> <%= @bar.opening_hours %></div>
+            </li>
+            <li class="list-inline-item me-0">
+              <div class="chip me-0"> <%= @bar.closing_hours %></div>
+            </li>
+          </ul>
+          <h3 class="btn btn-link link-secondary p-md-1 mb-0"><%= link_to "Return", bars_path %></h3>
+        </div>
+    </div>
+  </section>
+</div>
+
+<%# <div class="carousel-item">
+  <img src="..." alt="...">
+  <div class="carousel-caption d-none d-md-block">
+    <h5>...</h5>
+    <p>...</p>
+  </div>
+</div> %>

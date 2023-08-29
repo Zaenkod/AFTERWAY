@@ -1,0 +1,43 @@
+// :root {
+//   --star-size: 30px;
+//   --star-color: #fff;
+//   --star-background: #fc0;
+// }
+.card-body-bar {
+  background-color: #FFB627;
+  border-radius: 0 0 8px 8px;
+}
+
+.card-bar-description {
+  background-color: #FFC971;
+  border-radius: 8px;
+  border: 3px solid hsla(0,0%,100%,.5);
+  margin: 0 5px;
+}
+
+.Stars {
+  --star-size: 30px;
+  --star-color: #fff;
+  --star-background: rgb(36, 36, 33);
+  --percent: calc(var(--rating) / 5 * 100%);
+
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times; // make sure ★ appears correctly
+  line-height: 1;
+
+  &::before {
+    content: '★★★★★';
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+// Just to make a preview more beautifull
+
+* {
+  position: relative;
+  box-sizing: border-box;
+}
