@@ -1,33 +1,29 @@
-<div class="container p-4" style = "background-color:#FF9505">
-  <h1 class="text-center text-white">AFTERWAY<i class="fa-solid fa-bell ms-5"></i></h1>
-  <div class="row justify-content-center">
-    <div class="col-sm-8 my-5">
-      <%# l'url correspond au préfix de l'affichage de index / home donc root et non places %>
-      <%= form_with url: bars_path, method: :get, class: "d-flex rounded" do %>
-        <%= text_field_tag :query,
-              params[:query],
-              class: "form-control bg-white rounded-pill",
-              placeholder: "Search a bar"
-          %>
-        <button type="submit" id="submit"  class="border-0" style = "background-color:#FF9505">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-      <% end %>
-    </div>
-    <p class="text-center text-white"> Et si on prenait l'apéro ?</p>
-    <div class="buttons pe-5">
-      <%= link_to "Join an Event", new_event_path, class: "btn bg-white rounded-pill shadow-sm", style: "color: #FF9505"%>
-      <%= link_to "Create an Event", new_event_path, class: "btn bg-white rounded-pill shadow-sm ", style: "color: #FF9505" %>
+<div class="container p-4" data-controller="search-bars">
+  <div style = "background-color:#FF9505">
+    <h1 class="text-center text-white">AFTERWAY<i class="fa-solid fa-bell ms-5"></i></h1>
+    <div class="row justify-content-center">
+      <div class="col-sm-8 my-5">
+            <%= form_with url: bars_path, method: :get, class: "d-flex rounded", data: {search_bars_target: "form"} do |f|%>
+              <%= f.text_field :query,
+                  value: params[:query],
+                  class: "form-control bg-white rounded-pill",
+                  placeholder: "Search a bar",
+                   data: {
+                    search_bars_target: "input",
+                    action: "keyup->search-bars#update"
+                   }
+              %>
+              <button type="submit" id="submit"  class="border-0" style = "background-color:#FF9505">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            <% end %>
+        <p class="text-center text-white"> Et si on prenait l'apéro ?</p>
+        <div class="buttons pe-5">
+          <%= link_to "Join an Event", new_event_path, class: "btn bg-white rounded-pill shadow-sm", style: "color: #FF9505"%>
+          <%= link_to "Create an Event", new_event_path, class: "btn bg-white rounded-pill shadow-sm ", style: "color: #FF9505" %>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="container">
-  <h1>List of bars</h1>
-  <% @bars.each do |bar| %>
-  <p><%= bar.name %> <h3 class="mb-2"><%= link_to bar.name, bar_path(bar) %></h3></p>
-  <p><%= bar.address %></p>
-  <p><%= bar.category %></p>
-  <p><%= bar.description %></p>
-  <% end %>
-</div>
+<%= render 'bars/index' %>
+  </div>
