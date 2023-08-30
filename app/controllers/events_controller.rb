@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  before_action :set_users, only: %i[new create]
+
   def new
     @user = User.find(current_user.id)
     @event = Event.new
@@ -16,7 +18,6 @@ class EventsController < ApplicationController
         geocode_center
         @event.bars << Bar.near(@barycenter, @event.distance)
       end
-
       redirect_to event_path(@event)
     else
       render :new, status: :unprocessable_entity
@@ -47,15 +48,18 @@ class EventsController < ApplicationController
 
   end
 
+  private
+
   def geocode_center
     addresses_participants = @event.users.pluck(:latitude, :longitude)
     @barycenter = Geocoder::Calculations.geographic_center(addresses_participants)
   end
 
-  private
-
   def event_params
     params.require(:event).permit(:title, :date, :address, :distance, :hour, :category, :price, :users, user_ids: [])
   end
 
+  def set_users
+    @users = User.where.not(id: current_user.id).order(:first_name)
+  end
 end

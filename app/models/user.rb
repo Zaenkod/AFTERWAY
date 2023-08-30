@@ -9,6 +9,7 @@ class User < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
 
   def unique_user
+
     "#{first_name} #{last_name}, #{email}"
   end
 end
