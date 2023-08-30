@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_30_094540) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_30_103307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_094540) do
     t.datetime "updated_at", null: false
     t.time "opening_hours"
     t.time "closing_hours"
+    t.float "latitude"
+    t.float "longitude"
   end
 
   create_table "event_bars", force: :cascade do |t|
@@ -46,10 +48,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_094540) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.time "hour"
-    t.integer "travel_time"
     t.string "category"
     t.integer "price"
     t.string "title"
+    t.integer "distance"
     t.string "status"
     t.index ["user_id"], name: "index_events_on_user_id"
   end

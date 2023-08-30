@@ -43,7 +43,7 @@ user3 = User.create!(first_name: "Cédric", last_name: "Ruault", address:"23 Rue
 user4 = User.create!(first_name: "Michel", last_name: "Feu", address:"45 rue de la TOmbe Issoire, Paris", email: "michel@gmail.com", password: "123456")
 
 puts "create event"
-event = user1.events.new(date: "31/08/2023", address: user1.address, hour: "20:00", travel_time: 5, category: "Wine bars", price: "10", title: "les copains d'abord")
+event = user1.events.new(date: "31/08/2023", address: user1.address, hour: "20:00", distance: 5, category: "Wine bars", price: "10", title: "les copains d'abord")
 event.save!
 
 Participant.create(event: event, user: user1)
