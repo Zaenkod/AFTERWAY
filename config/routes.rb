@@ -7,12 +7,12 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :events, only: %i[new create show update] do
-    resources :event_bars, only: %i[index update]
+    resources :event_bars, only: %i[index]
   end
 
   resources :users, only: %i[show]
   resources :bars, only: %i[index show]
-
+  resources :event_bars, only: %i[show update]
   get "/myevents", to: "events#myevents", as: "myevents"
 
 end

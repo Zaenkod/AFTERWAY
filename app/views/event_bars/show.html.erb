@@ -1,0 +1,32 @@
+ <%= render "shared/navbar" %>
+<div class="container">
+  <section class="mx-auto my-5" style="max-width: 23rem;">
+
+    <div class="card">
+      <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+        <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2748&q=80" class="img-fluid" />
+      </div>
+        <div class="card-body-bar">
+          <h3 class="card-title font-weight-bold"><p><%= @event_bar.bar.name %></p></h3>
+          <p><%= @event_bar.bar.address %></p>
+            <div class="d-flex justify-content-around">
+              <div class="Stars" style="--rating: 2.3;" aria-label="Rating of this product is 2.3 out of 5.">
+              </div>
+                <p class="text-muted"><%= @event_bar.bar.rating %></p>
+            </div>
+              <div class="d-flex justify-content-around">
+                <p class="mb-2 text-center"><i class="fa-solid fa-calendar-days"> </i><%= @event_bar.event.date %> |</p>
+                <p class="mb-2 text-center"><i class="fa-regular fa-clock"></i> <%= @event_bar.event.hour %></p>
+              </div>
+                <p class="mb-2 text-center">Status :<%= @event_bar.status %></p>
+                <div class="card-bar-description">
+                  <p class="card-text"><strong>Booking :</strong></p>
+                    <%= simple_form_for (@event_bar) do |f| %>
+                      <%= f.hidden_field :status, value: "booked"%>
+                      <%= f.button :submit, "Book this bar" %>
+                    <% end %>
+                </div>
+        </div>
+    </div>
+  </section>
+</div>
