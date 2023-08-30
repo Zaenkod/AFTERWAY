@@ -55,5 +55,5 @@ Participant.create(event: event, user: user2)
 Participant.create(event: event, user: user3)
 Participant.create(event: event, user: user4)
 
-EventBar.create(event: event, bar: bar1, vote: 0, status: nil)
-EventBar.create(event: event, bar: bar2, vote: 0, status: nil)
+EventBar.create(event: event, bar: bar1, status: nil)
+EventBar.create(event: event, bar: bar2, status: nil)

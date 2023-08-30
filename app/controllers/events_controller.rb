@@ -44,8 +44,8 @@ class EventsController < ApplicationController
   end
 
   def myevents
-    @myevents = Event.where(id:current_user.id)
-
+    @host_events = current_user.events
+    @invitation_events = current_user.participations
   end
 
   private
