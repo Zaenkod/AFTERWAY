@@ -23,7 +23,9 @@ bar1 = Bar.create!(
   Avec son ambiance chaleureuse, vous vous sentirez comme à la maison.",
   rating: 4.4,
   opening_hours: "11AM",
-  closing_hours: "2PM"
+  closing_hours: "2PM",
+  latitude: 48.8667135,
+  longitude: 2.3812373
 )
 
 puts "Create The Frog Revolution"
@@ -33,7 +35,9 @@ bar2 = Bar.create!(
   category: "English Pub",
   description: "Situé sur la place historique de la Bastille, au coeur d'un quartier aussi connu pour ses nuits animées que pour son passé révolutionnaire.
   Mi pub, mi lounge, Frog Revolution sert des bières artisanales en pression sur 24 pompes, ainsi qu'un menu délicieux et gourmand composé de BBQ fumé américain et des Genuinely Good Burgers jusqu'en fin de soirée, sept jours par semaine.",
-  rating: 4.3
+  rating: 4.3,
+  latitude: 48.8538728,
+  longitude: 2.3682637
 )
 
 puts "Create User"
