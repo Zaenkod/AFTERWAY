@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema[7.0].define(version: 2023_08_30_103307) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,7 +34,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_103307) do
   create_table "event_bars", force: :cascade do |t|
     t.bigint "event_id", null: false
     t.bigint "bar_id", null: false
-    t.integer "vote"
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,6 +52,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_103307) do
     t.integer "price"
     t.string "title"
     t.integer "distance"
+    t.string "status"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
@@ -81,9 +83,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_103307) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.bigint "participant_id", null: false
+    t.bigint "event_bar_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_bar_id"], name: "index_votes_on_event_bar_id"
+    t.index ["participant_id"], name: "index_votes_on_participant_id"
+  end
+
   add_foreign_key "event_bars", "bars"
   add_foreign_key "event_bars", "events"
   add_foreign_key "events", "users"
   add_foreign_key "participants", "events"
   add_foreign_key "participants", "users"
+  add_foreign_key "votes", "event_bars"
+  add_foreign_key "votes", "participants"
 end
