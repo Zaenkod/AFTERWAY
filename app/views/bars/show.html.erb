@@ -1,3 +1,4 @@
+ <%= render "shared/navbar" %>
 <div class="container">
   <section class="mx-auto my-5" style="max-width: 23rem;">
 
@@ -28,7 +29,6 @@
               <div class="chip me-0"> <%= @bar.closing_hours %></div>
             </li>
           </ul>
-          <h3 class="btn btn-link link-secondary p-md-1 mb-0"><%= link_to "Return", bars_path %></h3>
         </div>
     </div>
   </section>
@@ -41,3 +41,5 @@
     <p>...</p>
   </div>
 </div> %>
+
+<%= render "shared/footer" %>

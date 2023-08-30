@@ -1,0 +1,12 @@
+<h2>My events</h2>
+<% @myevents.each do |event| %>
+<% raise %>
+  <p> Host : <%= User.find(id: event.user_id)%></p>
+  <p> Title : <%= event.title%></p>
+  <p> Date : <%= event.date %></p>
+  <p> Address : <%= event.address %></p>
+  <p> Hour : <%= event.hour %></p>
+<% end %>
+
+<h3>Events</h3>
+<%= render "shared/footer" %>
