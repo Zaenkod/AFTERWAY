@@ -1,15 +1,17 @@
+<%= render "shared/navbar" %>
 <div class="container mt-5 border rounded-5 p-5" >
   <h1>Your afterwork</h1>
   <%= simple_form_for (@event) do |f| %>
-    <%= f.input :title %>
-    <%= f.input :date,
+    <%= f.input :title, label: 'Title of your event' %>
+    <%= f.input :date, label: 'Date of your event',
                 as: :string,
                 input_html: { data: { controller: "datepicker" } } %>
-    <%= f.input :hour %>
-    <%= f.input :address %>
-    <%= f.input :travel_time %>
+    <%= f.input :hour, label: 'Hour of your event' %>
+    <%= f.input :distance, label: 'Define the search radius', hint: 'In km' %>
     <%= f.input :category %>
-    <%= f.association :users, label_method: :unique_user %>
+    <%= f.input :price %>
+    <%= f.input :address, hint: 'if blank, your account address will be used' %>
+    <%= f.association :users, collection: @users, label: 'Add participants', label_method: :unique_user %>
     <%= f.button :submit, class: "btn btn-primary"  %>
   <% end %>
 </div>

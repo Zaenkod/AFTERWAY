@@ -1,10 +1,11 @@
+<%= render "shared/navbar" %>
 <div class="container">
   <h1>Bar details</h1>
   <div class="card-bar">
   <% @event.bars.each do |bar| %>
     <%#= bar.picture_url %>
     <div class="card-bar-infos">
-      <h3><%= bar.name %> </h3>
+      <h3><%= link_to "#{bar.name}", bar_path(bar) %> </h3>
       <p><%= bar.address%> </p>
       <p class ="mb-3"><%= bar.price %> € </p>
     </div>

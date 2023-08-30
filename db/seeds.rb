@@ -25,7 +25,9 @@ bar1 = Bar.create!(
   Avec son ambiance chaleureuse, vous vous sentirez comme à la maison.",
   rating: 4.4,
   opening_hours: "11AM",
-  closing_hours: "2PM"
+  closing_hours: "2PM",
+  latitude: 48.8667135,
+  longitude: 2.3812373
 )
 
 puts "Create The Frog Revolution"
@@ -35,7 +37,9 @@ bar2 = Bar.create!(
   category: "English Pub",
   description: "Situé sur la place historique de la Bastille, au coeur d'un quartier aussi connu pour ses nuits animées que pour son passé révolutionnaire.
   Mi pub, mi lounge, Frog Revolution sert des bières artisanales en pression sur 24 pompes, ainsi qu'un menu délicieux et gourmand composé de BBQ fumé américain et des Genuinely Good Burgers jusqu'en fin de soirée, sept jours par semaine.",
-  rating: 4.3
+  rating: 4.3,
+  latitude: 48.8538728,
+  longitude: 2.3682637
 )
 
 puts "Create User"
@@ -45,7 +49,7 @@ user3 = User.create!(first_name: "Cédric", last_name: "Ruault", address:"23 Rue
 user4 = User.create!(first_name: "Michel", last_name: "Feu", address:"45 rue de la TOmbe Issoire, Paris", email: "michel@gmail.com", password: "123456")
 
 puts "create event"
-event = user1.events.new(date: "31/08/2023", address: user1.address, hour: "20:00", travel_time: 5, category: "Wine bars", price: "10", title: "les copains d'abord")
+event = user1.events.new(date: "31/08/2023", address: user1.address, hour: "20:00", distance: 5, category: "Wine bars", price: "10", title: "les copains d'abord")
 event.save!
 
 Participant.create(event: event, user: user1)
@@ -127,12 +131,21 @@ serialized_bars = File.read(filepath)
 bars = JSON.parse(serialized_bars)
 
 bars.each do |bar|
+opening_hours = bar["result"]["opening_hours"]["periods"]["open"]["time"].insert(2,":")
+opening_hours = Time.strptime(time_str, "%H%M")
+
+#  closing_hours = bar["result"]["opening_hours"]["periods"]["close"]["time"].insert(2,":")
+
  Bar.create!(
     name: bar["result"]["name"],
     address: bar["result"]["formatted_address"],
     price: bar["result"]["price_level"],
     category: category.sample,
     rating: bar["result"]["rating"],
-    description: bar_descriptions.sample
+    description: bar_descriptions.sample,
+    latitude: bar["result"]["geometry"]["location"]["lat"],
+    longitude: bar["result"]["geometry"]["location"]["lng"],
+    opening_hours:  opening_hours
+    # closing_hours:  closing_hours.to_time
   )
 end
