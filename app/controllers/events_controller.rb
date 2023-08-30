@@ -36,8 +36,8 @@ class EventsController < ApplicationController
   end
 
   def myevents
-    @myevents = Event.where(id:current_user.id)
-
+    @myevents = Event.where(id: current_user.id)
+    raise
   end
 
   private
