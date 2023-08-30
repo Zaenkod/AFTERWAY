@@ -8,6 +8,7 @@
       <h3><%= link_to "#{bar.name}", bar_path(bar) %> </h3>
       <p><%= bar.address%> </p>
       <p class ="mb-3"><%= bar.price %> € </p>
+      <p><%= link_to "book this bar",  event_event_bar_path(bar) %></p>
     </div>
   <% end %>
   </div>
