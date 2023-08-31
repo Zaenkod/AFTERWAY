@@ -19,13 +19,14 @@
                 <p class="mb-2 text-center"><i class="fa-regular fa-clock"></i> <%= @event_bar.event.hour %></p>
               </div>
                 <p class="mb-2 text-center">Status :<%= @event_bar.status %></p>
-                <div class="card-bar-description">
+                <div class="card-bar-description text-center">
                   <p class="card-text"><strong>Booking :</strong></p>
                     <%= simple_form_for (@event_bar) do |f| %>
                       <%= f.hidden_field :status, value: "booked"%>
-                      <%= f.button :submit, "Book this bar" %>
+                      <%= f.button :submit, "Book this bar", class: "btn btn-outline-dark" %>
                     <% end %>
                 </div>
+                <%= link_to "Back to my events", myevents_path, class: "btn btn-primary m-3" %>
         </div>
     </div>
   </section>

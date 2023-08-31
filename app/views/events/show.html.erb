@@ -5,7 +5,7 @@
   <% @event.event_bars.each do |event_bar| %>
     <%#= bar.picture_url %>
     <div class="card-bar-infos">
-      <h3><%= link_to "#{event_bar.bar.name}", bar_path(event_bar.bar) %> </h3>
+      <h3><%= link_to "#{event_bar.bar.name}", event_bar_path(event_bar) %> </h3>
       <p><%= event_bar.bar.address%> </p>
       <p class ="mb-3"><%= event_bar.bar.price %> € </p>
       <p><%= link_to "book this bar", event_bar_path(event_bar) %></p>

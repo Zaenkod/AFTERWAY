@@ -6,7 +6,8 @@ class EventBarsController < ApplicationController
   def update
     @event_bar = EventBar.find(params[:id])
     @event_bar.update(event_bar_params)
-    redirect_to event_path(@event_bar.event)
+    @event = @event_bar.event.update(status: @event_bar.status)
+    redirect_to event_bar_path(@event_bar)
   end
 
   private

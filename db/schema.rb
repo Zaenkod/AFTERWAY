@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema[7.0].define(version: 2023_08_31_114633) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,7 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_114633) do
   create_table "event_bars", force: :cascade do |t|
     t.bigint "event_id", null: false
     t.bigint "bar_id", null: false
-    t.string "status"
+    t.string "status", default: "Not booked"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["bar_id"], name: "index_event_bars_on_bar_id"
@@ -74,11 +76,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_114633) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.time "hour"
+    t.integer "distance"
     t.string "category"
     t.integer "price"
     t.string "title"
-    t.string "status"
     t.integer "distance"
+    t.string "status", default: "Not booked"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
