@@ -1,0 +1,14 @@
+.btn-small-white {
+  color: $secondary-orange;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: $fourthly-orange;
+  transition: background 0.3s ease;
+  border: 1px solid $secondary-orange;
+}
+
+.btn-small-white:hover {
+  background: $thirdly-orange;
+  color: white;
+}
