@@ -1,13 +1,5 @@
 require "json"
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-
 puts 'Cleaning database...'
 EventBar.destroy_all
 Participant.destroy_all
@@ -15,54 +7,116 @@ Event.destroy_all
 Bar.destroy_all
 User.destroy_all
 
-puts "Create Les marquises"
-
-bar1 = Bar.create!(
-  name: "Les marquises",
-  address: "145 Rue Oberkampf, 75011 Paris",
-  category: "Happy-hours",
-  description: "Un bar et un restaurant cosy spécialisé dans la cuisine française. Vous serez accueilli dans un cadre sympa.
-  Avec son ambiance chaleureuse, vous vous sentirez comme à la maison.",
-  rating: 4.4,
-  opening_hours: "11AM",
-  closing_hours: "2PM",
-  latitude: 48.8667135,
-  longitude: 2.3812373
+puts "Create 6 Users : User1 = Nathaly, User2 = Pierre, User3 = Cédric, User4 = Michel, User5 = Paul, User6 = Cécile "
+user1 = User.create!(
+  first_name: "Nathaly",
+  last_name: "Gomez",
+  address: "4 rue d'Alsace, Asnières-Sur-Seine",
+  email: "nath@gmail.com",
+  password: "123456"
 )
 
-puts "Create The Frog Revolution"
-bar2 = Bar.create!(
-  name: "The Frog Revolution",
-  address: "9 Rue de la Bastille, 75004 Paris",
-  category: "English Pub",
-  description: "Situé sur la place historique de la Bastille, au coeur d'un quartier aussi connu pour ses nuits animées que pour son passé révolutionnaire.
-  Mi pub, mi lounge, Frog Revolution sert des bières artisanales en pression sur 24 pompes, ainsi qu'un menu délicieux et gourmand composé de BBQ fumé américain et des Genuinely Good Burgers jusqu'en fin de soirée, sept jours par semaine.",
-  rating: 4.3,
-  latitude: 48.8538728,
-  longitude: 2.3682637
+user2 = User.create!(
+  first_name: "Pierre",
+  last_name: "d'Anselme",
+  address: "16 Villa Gaudelet, Paris",
+  email: "pierre@gmail.com",
+   password: "123456"
+  )
+
+user3 = User.create!(
+  first_name: "Cédric",
+  last_name: "Ruault",
+  address: "23 Rue Theodore de Banville, Paris",
+  email: "cédric@gmail.com",
+  password: "123456"
 )
 
-puts "Create User"
-user1 = User.create!(first_name: "Nathaly", last_name: "Gomez", address:"4 rue d'Alsace, Asnières-Sur-Seine", email: "nath@gmail.com", password: "123456")
-user2 = User.create!(first_name: "Pierre", last_name: "d'Anselme", address:"16 Villa Gaudelet, Paris", email: "pierre@gmail.com", password: "123456")
-user3 = User.create!(first_name: "Cédric", last_name: "Ruault", address:"23 Rue Theodore de Banville, Paris", email: "cédric@gmail.com", password: "123456")
-user4 = User.create!(first_name: "Michel", last_name: "Feu", address:"45 rue de la TOmbe Issoire, Paris", email: "michel@gmail.com", password: "123456")
+user4 = User.create!(
+  first_name: "Michel",
+  last_name: "Feu",
+  address: "45 rue de la Tombe Issoire, Paris",
+  email: "michel@gmail.com",
+  password: "123456"
+)
 
-puts "create event"
-event = user1.events.new(date: "31/08/2023", address: user1.address, hour: "20:00", distance: 5, category: "Wine bars", price: "10", title: "les copains d'abord")
-event.save!
+user5 = User.create!(
+  first_name: "Paul",
+  last_name: "Portier",
+  address: "9 Rue Madame de Sanzillon, Clichy",
+  email: "paul@gmail.com",
+  password: "123456"
+)
 
-Participant.create(event: event, user: user1)
-Participant.create(event: event, user: user2)
-Participant.create(event: event, user: user3)
-Participant.create(event: event, user: user4)
+user6 = User.create!(
+  first_name: "Cécile",
+  last_name: "Veneziani",
+  address: "23 Rue Hoche, Ivry-sur-Seine",
+  email: "cecile@gmail.com",
+  password: "123456"
+)
 
-EventBar.create(event: event, bar: bar1, status: nil)
-EventBar.create(event: event, bar: bar2, status: nil)
+# Génerer 10 faux noms d'évenements
+event_names = [
+  "Technology Innovation Conference",
+  "Local Art Exhibition",
+  "Professional Networking Meetup",
+  "Creative Cooking Workshop",
+  "Personal Development Seminar",
+  "Outdoor Concert",
+  "Environmental Awareness Day",
+  "Independent Film Festival",
+  "Board Games Tournament",
+  "Charity Masquerade Ball"
+]
 
-puts "Create 60 bars"
-category = ["Cocktail bar", "Sports bar", "Dive bar", "Wine bar", "Pub or tavern", "Live music bar", "Hotel bar", "Specialty bars", "Country Bar", "Beer Bar", "Tiki Bar"]
+# Générer 10 fausses dates d'évenements
+event_dates = [
+  "04/09/23",
+  "06/11/23",
+  "08/12/23",
+  "07/09/23",
+  "20/11/23",
+  "15/12/23",
+  "11/10/23",
+  "23/09/23",
+  "21/11/23",
+  "18/12/23",
+  "05/09/23"
+]
 
+# Générer 10 fausses heures d'évenements
+event_hours= [
+  "17:30",
+  "18:00",
+  "19:00",
+  "20:00",
+  "19:45",
+  "17:45",
+  "18:20",
+  "21:00",
+  "20:30",
+  "19:30",
+  "17:00"
+]
+
+
+# Génerer 11 fausses catégories de bars
+category = [
+  "Cocktail bar",
+  "Sports bar",
+  "Dive bar",
+  "Wine bar",
+  "Pub or tavern",
+  "Live music bar",
+  "Hotel bar",
+  "Specialty bars",
+  "Country Bar",
+  "Beer Bar",
+  "Tiki Bar"
+]
+
+# Génerer 60 fausses descriptions
 bar_descriptions = [
   "A cozy hideaway with soft lighting and an inviting atmosphere.",
   "An upscale lounge where art and cocktails blend seamlessly.",
@@ -125,74 +179,95 @@ bar_descriptions = [
   "A bar with an ever-changing menu based on seasonal ingredients."
 ]
 
+
+
+# # On génere 30 bars depuis le fichier json
+# bars.each.take(3) do |bar|
+#   bar = Bar.create!(
+#       name: bar["result"]["name"],
+#       address: bar["result"]["formatted_address"],
+#       price: bar["result"]["price_level"],
+#       category: category.sample,
+#       rating: bar["result"]["rating"],
+#       description: bar_descriptions.sample,
+#       latitude: bar["result"]["geometry"]["location"]["lat"],
+#       longitude: bar["result"]["geometry"]["location"]["lng"],
+#       opening_hours:  bar.dig("result", "opening_hours", "periods")&.first&.dig("open", "time"),
+#       closing_hours:  bar.dig("result", "opening_hours", "periods")&.first&.dig("close", "time")
+#     )
+#   # Attach the photo using your Cloudinary config
+#   bar.photo.attach(io: file, filename: "bar.png", content_type: "image/png")
+#   bar.save!
+# end
+
+
+
+# On récupere les infos des bars depuis le fichier json
 filepath = File.join(Rails.root,"/public/bars.json")
 serialized_bars = File.read(filepath)
 bars = JSON.parse(serialized_bars)
 
-bars.each do |bar|
 
- Bar.create!(
-    name: bar["result"]["name"],
-    address: bar["result"]["formatted_address"],
-    price: bar["result"]["price_level"],
-    category: category.sample,
-    rating: bar["result"]["rating"],
-    description: bar_descriptions.sample,
-    latitude: bar["result"]["geometry"]["location"]["lat"],
-    longitude: bar["result"]["geometry"]["location"]["lng"],
-    opening_hours:  bar.dig("result", "opening_hours", "periods")&.first&.dig("open", "time"),
-    closing_hours:  bar.dig("result", "opening_hours", "periods")&.first&.dig("close", "time")
-  )
+puts "Create 30 bars"
+# On génere 30 bars depuis le fichier json
+bars.take(20).each do |bar|
+  bar = Bar.new(
+      name: bar["result"]["name"],
+      address: bar["result"]["formatted_address"],
+      price: bar["result"]["price_level"],
+      category: category.sample,
+      rating: bar["result"]["rating"],
+      description: bar_descriptions.sample,
+      latitude: bar["result"]["geometry"]["location"]["lat"],
+      longitude: bar["result"]["geometry"]["location"]["lng"],
+      opening_hours:  bar.dig("result", "opening_hours", "periods")&.first&.dig("open", "time"),
+      closing_hours:  bar.dig("result", "opening_hours", "periods")&.first&.dig("close", "time")
+    )
+
+  # On récupere une image random d'un bar via unsplash
+  url = "https://api.unsplash.com/photos/random?client_id=#{ENV["ACCESS_KEY"]}&query=bar"
+  # Fetch this URL, it will return a json containing infos about 1 random photo
+  photo_serialized = URI.open(url).read
+  photo_json = JSON.parse(photo_serialized)
+  # Get the URL for one of the sizes (small is the smallest obvy)
+  photo_url = photo_json["urls"]["small"]
+  # Download this photo and save it into a variable
+  file = URI.open(photo_url)
+  # Attach the photo using your Cloudinary config
+  bar.photo.attach(io: file, filename: "bar.png", content_type: "image/png")
+  bar.save!
+
+  puts "Create 1 event for each bar organize by le N avec toutes l'équipe"
+    event = user1.events.create!(
+      date: event_dates.sample,
+      address: user1.address,
+      hour: event_hours.sample,
+      distance: rand(1..8),
+      category: category.sample,
+      price: rand(0..5),
+      title: event_names.sample
+    )
+    Participant.create!(event: event, user: user2)
+    Participant.create!(event: event, user: user3)
+    Participant.create!(event: event, user: user4)
+    Participant.create!(event: event, user: user5)
+    Participant.create!(event: event, user: user6)
+    EventBar.create!(event: event, bar: bar, status: nil)
+
+  puts "Create 1 events organize by le M avec toute l'équipe sans le P"
+    event = user4.events.create!(
+      date: event_dates.sample,
+      address: user4.address,
+      hour: event_hours.sample,
+      distance: rand(1..8),
+      category: category.sample,
+      price: rand(0..5),
+      title: event_names.sample
+    )
+    Participant.create!(event: event, user: user1)
+    Participant.create!(event: event, user: user3)
+    Participant.create!(event: event, user: user6)
+    EventBar.create!(event: event, bar: bar, status: nil)
 end
 
-
-#Génerer 10 faux noms d'évenements
-event_names = [
-  "Technology Innovation Conference",
-  "Local Art Exhibition",
-  "Professional Networking Meetup",
-  "Creative Cooking Workshop",
-  "Personal Development Seminar",
-  "Outdoor Concert",
-  "Environmental Awareness Day",
-  "Independent Film Festival",
-  "Board Games Tournament",
-  "Charity Masquerade Ball"
-]
-
-#Générer 10 fausses dates d'évenements
-event_dates = ["04/09/23", "06/11/23", "08/12/23", "07/09/23", "20/11/23", "15/12/23", "11/10/23", "23/09/23", "21/11/23", "18/12/23","05/09/23"]
-#Générer 10 fausses dates d'évenements
-
-puts "Create 10 events organize by le N avec toutes l'équipe"
-
-10.times do
-  event = user1.events.new(date: event_dates.sample, address: user1.address, hour: "20:00", distance: rand(5..8), category: category.sample , price: rand(0..5), title: event_names.sample)
-  Participant.create(event: event, user: user2)
-  Participant.create(event: event, user: user3)
-  Participant.create(event: event, user: user4)
-end
-
-
-puts "Create 10 events organize by le P avec toute l'équipe sans le N"
-10.times do
-  event = user2.events.new(date: event_dates.sample, address: user2.address, hour: "20:00", distance: rand(5..8), category: category.sample , price: rand(0..5), title: event_names.sample)
-  Participant.create(event: event, user: user3)
-  Participant.create(event: event, user: user4)
-end
-
-puts "Create 10 events organize by le C avec toute l'équipe sans le N et je sais plus"
-10.times do
-  event = user3.events.new(date: event_dates.sample, address: user3.address, hour: "20:00", distance: rand(5..8), category: category.sample , price: rand(0..5), title: event_names.sample)
-  Participant.create(event: event, user: user2)
-  Participant.create(event: event, user: user4)
-end
-
-
-puts "Create 10 events organize by le M avec toute l'équipe sans le N et je sais plus"
-10.times do
-  event = user4.events.new(date: event_dates.sample, address: user4.address, hour: "20:00", distance: rand(5..8), category: category.sample , price: rand(0..5), title: event_names.sample)
-  Participant.create(event: event, user: user2)
-  Participant.create(event: event, user: user3)
-end
-
+puts "Total : 20 bars, 40 Events et EventsBar, 6 Users"
