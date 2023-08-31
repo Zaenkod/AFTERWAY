@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_30_103307) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_30_154459) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,8 +23,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_103307) do
     t.float "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.time "opening_hours"
-    t.time "closing_hours"
+    t.string "opening_hours"
+    t.string "closing_hours"
     t.float "latitude"
     t.float "longitude"
   end

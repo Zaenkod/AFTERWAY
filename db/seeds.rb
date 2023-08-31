@@ -131,10 +131,6 @@ serialized_bars = File.read(filepath)
 bars = JSON.parse(serialized_bars)
 
 bars.each do |bar|
-opening_hours = bar["result"]["opening_hours"]["periods"]["open"]["time"].insert(2,":")
-opening_hours = Time.strptime(time_str, "%H%M")
-
-#  closing_hours = bar["result"]["opening_hours"]["periods"]["close"]["time"].insert(2,":")
 
  Bar.create!(
     name: bar["result"]["name"],
@@ -145,7 +141,58 @@ opening_hours = Time.strptime(time_str, "%H%M")
     description: bar_descriptions.sample,
     latitude: bar["result"]["geometry"]["location"]["lat"],
     longitude: bar["result"]["geometry"]["location"]["lng"],
-    opening_hours:  opening_hours
-    # closing_hours:  closing_hours.to_time
+    opening_hours:  bar.dig("result", "opening_hours", "periods")&.first&.dig("open", "time"),
+    closing_hours:  bar.dig("result", "opening_hours", "periods")&.first&.dig("close", "time")
   )
+end
+
+
+#Génerer 10 faux noms d'évenements
+event_names = [
+  "Technology Innovation Conference",
+  "Local Art Exhibition",
+  "Professional Networking Meetup",
+  "Creative Cooking Workshop",
+  "Personal Development Seminar",
+  "Outdoor Concert",
+  "Environmental Awareness Day",
+  "Independent Film Festival",
+  "Board Games Tournament",
+  "Charity Masquerade Ball"
+]
+
+#Générer 10 fausses dates d'évenements
+event_dates = ["04/09/23", "06/11/23", "08/12/23", "07/09/23", "20/11/23", "15/12/23", "11/10/23", "23/09/23", "21/11/23", "18/12/23","05/09/23"]
+#Générer 10 fausses dates d'évenements
+
+puts "Create 10 events organize by le N avec toutes l'équipe"
+
+10.times do
+  event = user1.events.new(date: event_dates.sample, address: user1.address, hour: "20:00", distance: rand(5..8), category: category.sample , price: rand(0..5), title: event_names.sample)
+  Participant.create(event: event, user: user2)
+  Participant.create(event: event, user: user3)
+  Participant.create(event: event, user: user4)
+end
+
+
+puts "Create 10 events organize by le P avec toute l'équipe sans le N"
+10.times do
+  event = user2.events.new(date: event_dates.sample, address: user2.address, hour: "20:00", distance: rand(5..8), category: category.sample , price: rand(0..5), title: event_names.sample)
+  Participant.create(event: event, user: user3)
+  Participant.create(event: event, user: user4)
+end
+
+puts "Create 10 events organize by le C avec toute l'équipe sans le N et je sais plus"
+10.times do
+  event = user3.events.new(date: event_dates.sample, address: user3.address, hour: "20:00", distance: rand(5..8), category: category.sample , price: rand(0..5), title: event_names.sample)
+  Participant.create(event: event, user: user2)
+  Participant.create(event: event, user: user4)
+end
+
+
+puts "Create 10 events organize by le M avec toute l'équipe sans le N et je sais plus"
+10.times do
+  event = user4.events.new(date: event_dates.sample, address: user4.address, hour: "20:00", distance: rand(5..8), category: category.sample , price: rand(0..5), title: event_names.sample)
+  Participant.create(event: event, user: user2)
+  Participant.create(event: event, user: user3)
 end
