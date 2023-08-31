@@ -49,8 +49,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_30_154459) do
     t.string "category"
     t.integer "price"
     t.string "title"
-    t.string "status"
     t.integer "distance"
+    t.string "status"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 

@@ -12,7 +12,10 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[show]
   resources :bars, only: %i[index show]
-  resources :event_bars, only: %i[show update]
+  resources :event_bars, only: %i[show update] do
+    resources :votes, only: %i[create]
+  end
+  resources :votes, only: %i[destroy]
   get "/myevents", to: "events#myevents", as: "myevents"
 
 end

@@ -8,10 +8,12 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @user = User.find(current_user.id)
+    @user = current_user
     @event.user = @user
 
     if @event.save
+      Participant.create!(event: @event, user: current_user)
+
       if @event.address.present?
         @event.bars << Bar.near(@event.address, @event.distance)
       else
@@ -28,6 +30,8 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     # @event_bars = @event.event_bars
     # @my_events = @event_bars.where(user: current_user)
+    @participant = @event.participants.find_by(user: current_user)
+    @event_bars = @event.event_bars.sort_by { |event_bar| -event_bar.votes.count }
   end
 
   def edit
