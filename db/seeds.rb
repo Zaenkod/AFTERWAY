@@ -254,7 +254,7 @@ bars.take(20).each do |bar|
     Participant.create!(event: event, user: user6)
     EventBar.create!(event: event, bar: bar, status: nil)
 
-  puts "Create 1 events organize by le M avec toute l'équipe sans le P"
+  puts "Create 1 event organize by le M avec toute l'équipe sans le P"
     event = user4.events.create!(
       date: event_dates.sample,
       address: user4.address,
