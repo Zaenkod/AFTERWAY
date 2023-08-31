@@ -1,13 +1,24 @@
 <%= render "shared/navbar" %>
 <h2>My events</h2>
-<% @myevents.each do |event| %>
-<% raise %>
-  <p> Host : <%= User.find(id: event.user_id)%></p>
-  <p> Title : <%= event.title%></p>
+<h3> Organizer</h3>
+<% @host_events.each do |event| %>
+  <p> <%= link_to "title : #{event.title}", event_path(event) %></p>
+  <p> Host : <%= event.user.first_name %></p>
   <p> Date : <%= event.date %></p>
   <p> Address : <%= event.address %></p>
   <p> Hour : <%= event.hour %></p>
+  <p> Participant(s) : <%= event.users.where.not(id: current_user.id).map { |user| user.first_name }.join(", ") %></p>
 <% end %>
 
-<h3>Events</h3>
+<h3>Guest</h3>
+
+<% @invitation_events.each do |event| %>
+  <p> <%= link_to "title : #{event.title}", event_path(event) %></p>
+  <p> Host : <%= event.user.first_name %></p>
+  <p> Date : <%= event.date %></p>
+  <p> Address : <%= event.address %></p>
+  <p> Hour : <%= event.hour %></p>
+  <p> Participant(s) : <%= event.users.where.not(id: current_user.id).map { |user| user.first_name }.join(", ") %></p>
+<% end %>
+
 <%= render "shared/footer" %>

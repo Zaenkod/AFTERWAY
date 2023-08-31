@@ -60,7 +60,6 @@ Participant.create(event: event, user: user4)
 EventBar.create(event: event, bar: bar1, status: nil)
 EventBar.create(event: event, bar: bar2, status: nil)
 
-
 puts "Create 60 bars"
 category = ["Cocktail bar", "Sports bar", "Dive bar", "Wine bar", "Pub or tavern", "Live music bar", "Hotel bar", "Specialty bars", "Country Bar", "Beer Bar", "Tiki Bar"]
 
@@ -196,3 +195,4 @@ puts "Create 10 events organize by le M avec toute l'équipe sans le N et je sai
   Participant.create(event: event, user: user2)
   Participant.create(event: event, user: user3)
 end
+

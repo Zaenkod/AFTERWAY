@@ -2,12 +2,13 @@
 <div class="container">
   <h1>Bar details</h1>
   <div class="card-bar">
-  <% @event.bars.each do |bar| %>
+  <% @event.event_bars.each do |event_bar| %>
     <%#= bar.picture_url %>
     <div class="card-bar-infos">
-      <h3><%= link_to "#{bar.name}", bar_path(bar) %> </h3>
-      <p><%= bar.address%> </p>
-      <p class ="mb-3"><%= bar.price %> € </p>
+      <h3><%= link_to "#{event_bar.bar.name}", bar_path(event_bar.bar) %> </h3>
+      <p><%= event_bar.bar.address%> </p>
+      <p class ="mb-3"><%= event_bar.bar.price %> € </p>
+      <p><%= link_to "book this bar", event_bar_path(event_bar) %></p>
     </div>
   <% end %>
   </div>
