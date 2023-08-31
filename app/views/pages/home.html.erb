@@ -1,14 +1,14 @@
-<%= render "shared/navbar" %>
 <div data-controller="search-bars" >
   <div style = "background-color:#FF9505">
     <h1 class="text-center text-white">AFTERWAY<i class="fa-solid fa-bell ms-5"></i></h1>
     <div class="row justify-content-center">
       <div class="col-sm-8 my-5">
+        <div class="search d-flex justify-content-center">
             <%= form_with url: bars_path, method: :get, class: "d-flex rounded", data: {search_bars_target: "form"} do |f|%>
               <%= f.text_field :query,
                   value: params[:query],
                   class: "form-control bg-white rounded-pill",
-                  placeholder: "Search a bar",
+                  placeholder: "Search an Event",
                    data: {
                     search_bars_target: "input",
                     action: "keyup->search-bars#update"
@@ -18,14 +18,15 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
               </button>
             <% end %>
-        <p class="text-center text-white"> Et si on prenait l'apéro ?</p>
-        <div class="buttons pe-5">
-          <%= link_to "Join an Event", myevents_path, class: "btn bg-white rounded-pill shadow-sm", style: "color: #FF9505"%>
-          <%= link_to "Create an Event", new_event_path, class: "btn bg-white rounded-pill shadow-sm ", style: "color: #FF9505" %>
+          </div>
+        <h3 class="text-center text-white m-3 fw-bold"> Let's have a drink!</h3>
+        <div class="buttons d-flex justify-content-center justify-content-around">
+          <%= link_to "Join an Event", myevents_path, class: "btn bg-white rounded-pill shadow-sm fw-bold", style: "color: #FF9505"%>
+          <%= link_to "Create an Event", new_event_path, class: "btn bg-white rounded-pill shadow-sm fw-bold", style: "color: #FF9505" %>
         </div>
       </div>
     </div>
   </div>
-<%= render 'bars/index'%>
+<%# <%= render 'events/myevents'%>
 </div>
 <%= render "shared/footer" %>
