@@ -16,4 +16,8 @@ class BarsController < ApplicationController
     @bar = Bar.find(params[:id])
   end
 
+  private
+  def article_params
+    params.require(:bar).permit(:id, :photo)
+  end
 end
