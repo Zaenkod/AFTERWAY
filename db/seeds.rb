@@ -252,6 +252,7 @@ bars.take(20).each do |bar|
     Participant.create!(event: event, user: user4)
     Participant.create!(event: event, user: user5)
     Participant.create!(event: event, user: user6)
+    Participant.create!(event: event, user: user1)
     EventBar.create!(event: event, bar: bar, status: nil)
 
   puts "Create 1 event organize by le M avec toute l'équipe sans le P"
@@ -264,6 +265,7 @@ bars.take(20).each do |bar|
       price: rand(0..5),
       title: event_names.sample
     )
+    Participant.create!(event: event, user: user4)
     Participant.create!(event: event, user: user1)
     Participant.create!(event: event, user: user3)
     Participant.create!(event: event, user: user6)
