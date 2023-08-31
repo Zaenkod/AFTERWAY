@@ -1,8 +1,9 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
-    <div>
-      <i class="fa-solid fa-circle-arrow-left" style="color: #ff9300;"></i>
-      <%= link_to "Back", :back, class: "navbar-brand" %>
+    <div class="back-button">
+      <%= link_to :back do %>
+      <i class="fa-solid fa-circle-arrow-left fa-2xl" style="color: #ff9300;"></i>
+      <% end %>
     </div>
 
     <h1>AFTERWAY</h1>
