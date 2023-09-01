@@ -26,6 +26,8 @@
   background-image: asset-url('banner-create-event.jpg');
   background-size: cover;
   background-position: center;
-  text-align: center;
-  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
 }

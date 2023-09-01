@@ -1,0 +1,77 @@
+.card-body-bar {
+  background-color: #FFB627;
+  border-radius: 0 0 8px 8px;
+}
+
+.card-bar-description {
+  background-color: #FFC971;
+  border-radius: 8px;
+  border: 3px solid hsla(0,0%,100%,.5);
+  margin: 0 5px;
+}
+
+.card-policy {
+  color: $primary-grey;
+}
+
+.card-policy h1 {
+  color: $secondary-orange;
+  text-align: center;
+  margin-top: 16px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.card-policy a {
+  color : $primary-grey;
+  text-decoration: none;
+}
+
+// .card-policy p {
+//   font-size: 10px;
+// }
+
+.card-bar {
+  overflow: hidden;
+  background: white;
+  border:solid;
+  border-color: $thirdly-orange;
+  border-radius: 24px;
+  margin: 18px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.card-bar > img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-bar-infos{
+  background-color: $fourthly-orange;
+  padding:10px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.card-bar-infos-left{
+  font-size:18px;
+}
+
+.card-bar-infos-right{
+  font-size:10px;
+}
+
+.card-bar-infos-right-pouce{
+    color: $secondary-orange;
+    background-color: $thirdly-orange;
+    width: 80px;
+    border-radius: 50%;
+    text-align: center;
+    font-size:26px;
+    position: absolute;
+    right: 0px;
+    top: -200px;
+    width: 40px;
+}
