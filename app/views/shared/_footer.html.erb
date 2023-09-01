@@ -1,8 +1,6 @@
-<div class="footer-i bg-white d-flex justify-content-around w-100 align-items-center">
-  <a href="#" style = "color:#E2711D"><i class="fa-solid fa-house"></i></i></a>
-  <a href="#" style = "color:#E2711D"><i class="fa-solid fa-magnifying-glass"></i></a>
-  <a href="#" style = "color:#E2711D"><i class="fa-solid fa-calendar-days"></i></a>
-  <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-  </a>
+<div class="footer-i bg-white d-flex justify-content-around w-100 align-items-center footer-icons footer-bottom-page" data-controller='search-bars'>
+  <%= link_to "", '#', class: "fa-solid fa-magnifying-glass", style:"color:#E2711D"%>
+  <%= link_to "", root_path, class: "fa-solid fa-house", style:"color:#E2711D"%>
+  <%= link_to "", myevents_path, class: "fa-solid fa-calendar-days", style:"color:#E2711D"%>
+  <%= link_to "", myevents_path, class: "fa-solid fa-bell", style:"color:#E2711D"%>
 </div>
