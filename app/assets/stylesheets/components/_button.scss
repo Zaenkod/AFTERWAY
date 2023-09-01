@@ -8,6 +8,17 @@
   border: 1px solid $secondary-orange;
 }
 
+.btn-small-orange2 {
+  color: $secondary-orange;
+  padding: 4px 10px;
+  font-size: 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: $thirdly-orange;
+  transition: background 0.3s ease;
+  border: 1px solid $secondary-orange;
+}
+
 .btn-small-orange:hover {
   background: $thirdly-orange;
   color: white;

@@ -1,16 +1,15 @@
 .card-body-bar {
-  background-color: #FFB627;
+  background-color: $fourthly-orange;
   border-radius: 0 0 8px 8px;
+  padding: 18px;
 }
 
 .card-bar-description {
-  background-color: #FFC971;
+  background-color: $thirdly-orange;
   border-radius: 8px;
   border: 3px solid hsla(0,0%,100%,.5);
   margin: 0 5px;
-    p {
-      margin-bottom: 0px;
-    }
+  padding:6px;
 }
 
 .card-policy {
@@ -38,21 +37,28 @@
   background: white;
   border:solid;
   border-color: $thirdly-orange;
-  border-radius: 24px;
-  margin: 18px;
+  border-radius: 18px;
+  margin: 8px;
+  margin-bottom: 24px;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
-.card-bar > img {
+.card-bar-img {
   height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-bar-img2 {
+  height: 400px;
   width: 100%;
   object-fit: cover;
 }
 
 .card-bar-infos{
   background-color: $fourthly-orange;
-  padding:10px;
+  padding:16px;
   display: flex;
   justify-content: space-between;
   position: relative;
@@ -64,6 +70,7 @@
 
 .card-bar-infos-right{
   font-size:10px;
+  margin-left: 10px;
 }
 
 .card-bar-infos-right-pouce{
@@ -77,4 +84,12 @@
     right: 0px;
     top: -200px;
     width: 40px;
+}
+
+.card-bar-category{
+  padding: 4px 10px;
+  font-weight: bold;
+  background: #ECF9FF;;
+  transition: background 0.3s ease;
+  border: 1px solid $primary-grey;
 }
