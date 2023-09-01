@@ -5,13 +5,12 @@
   <% @host_events.each do |event| %>
     <h3> <%= link_to "title : #{event.title}", event_path(event) %></h3>
       <p><%= event.address %></p>
-    <div class="infos d-flex fw-bold">
-      <p><%= event.date %></p>
+    <div class="infos d-flex fw-bold justify-content-around">
+      <p><i class="fa-solid fa-calendar-days"></i> <%= event.date.strftime("%a %e %b") %></p>
       <p>|</p>
-      <p><%= event.hour %></p>
+      <p><i class="fa-regular fa-clock"></i> <%= event.hour.strftime("%H h %M") %></p>
       <p>|</p>
-      <p><%= event.address %></p>
-      <p>|</p>
+      <p><i class="fa-solid fa-people-group"></i> <%= event.users.count %></p>
     </div>
 
     <p> Status : <%= event.status %></p>
@@ -24,9 +23,14 @@
 <% @invitation_events.each do |event| %>
   <p> <%= link_to "title : #{event.title}", event_path(event) %></p>
   <p> Host : <%= event.user.first_name %></p>
-  <p> Date : <%= event.date %></p>
   <p> Address : <%= event.address %></p>
-  <p> Hour : <%= event.hour %></p>
+  <div class="infos d-flex fw-bold justify-content-around">
+    <p><i class="fa-solid fa-calendar-days"></i>  <%= event.date.strftime("%a %e %b") %></p>
+    <p>|</p>
+    <p><i class="fa-regular fa-clock"></i>  <%= event.hour.strftime("%H %M") %></p>
+    <p>|</p>
+    <p><i class="fa-solid fa-people-group"></i> <%=  event.users.count %></p>
+  </div>
   <p> Status : <%= event.status %></p>
   <p> Participant(s) : <%= event.users.where.not(id: current_user.id).map { |user| user.first_name }.join(", ") %></p>
 <% end %>

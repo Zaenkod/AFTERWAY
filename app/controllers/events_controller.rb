@@ -30,7 +30,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     # @event_bars = @event.event_bars
     # @my_events = @event_bars.where(user: current_user)
-    @participant = @event.participants.find_by(user: current_user)
+    @participant = @event.participants.find_by( user: current_user)
     @event_bars = @event.event_bars.sort_by { |event_bar| -event_bar.votes.count }
   end
 
