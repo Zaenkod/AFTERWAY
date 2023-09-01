@@ -3,5 +3,9 @@
 }
 
 .footer-bottom-page {
-  min-height: calc(100vh - 75px);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
