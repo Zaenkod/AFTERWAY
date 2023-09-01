@@ -2,10 +2,8 @@
 <div class="container">
   <section class="mx-auto my-5" style="max-width: 23rem;">
 
-    <div class="card">
-      <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-        <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2748&q=80" class="img-fluid" />
-      </div>
+    <div class="card-bar">
+        <%= cl_image_tag @bar.photo.key, crop: :fit, class:"card-bar-img2"%>
         <div class="card-body-bar">
           <h3 class="card-title font-weight-bold"><p><%= @bar.name %></p></h3>
           <p><%= @bar.address %></p>
@@ -41,5 +39,3 @@
     <p>...</p>
   </div>
 </div> %>
-
-<%= render "shared/footer" %>

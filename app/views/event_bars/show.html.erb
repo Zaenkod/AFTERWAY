@@ -1,8 +1,8 @@
  <%= render "shared/navbar" %>
 <div class="container">
-  <section class="mx-auto my-5" style="max-width: 23rem;">
+  <section class="mx-auto">
 
-    <div class="card">
+    <div class="card-bar">
       <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
         <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2748&q=80" class="img-fluid" />
       </div>
@@ -14,19 +14,18 @@
               </div>
                 <p class="text-muted"><%= @event_bar.bar.rating %></p>
             </div>
-              <div class="d-flex justify-content-around">
-                <p class="mb-2 text-center"><i class="fa-solid fa-calendar-days"> </i><%= @event_bar.event.date %> |</p>
-                <p class="mb-2 text-center"><i class="fa-regular fa-clock"></i> <%= @event_bar.event.hour %></p>
+              <div class="card-bar-description d-flex justify-content-around align-items-center">
+                <p class="text-center"><i class="fa-solid fa-calendar-days"></i> <%= @event_bar.event.date.strftime("%a %e %b") %></p>
+                <p>|</p>
+                <p class="text-center"><i class="fa-regular fa-clock"></i> <%= @event_bar.event.hour.strftime("%H h %M") %></p>
               </div>
-                <p class="mb-2 text-center">Status :<%= @event_bar.status %></p>
-                <div class="card-bar-description text-center">
-                  <p class="card-text"><strong>Booking :</strong></p>
+                <p class="text-center m-3">Status : <%= @event_bar.status %></p>
+                <div class="text-center">
                     <%= simple_form_for (@event_bar) do |f| %>
                       <%= f.hidden_field :status, value: "booked"%>
-                      <%= f.button :submit, "Book this bar", class: "btn btn-outline-dark" %>
+                      <%= f.button :submit, "Book this bar 🎊", class: "btn btn-small-white mb-3" %>
                     <% end %>
                 </div>
-                <%= link_to "Back to my events", myevents_path, class: "btn btn-primary m-3" %>
         </div>
     </div>
   </section>
