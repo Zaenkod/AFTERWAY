@@ -1,24 +1,24 @@
-<div data-controller="search-bars" >
+<div data-controller="search-events" >
   <div style = "background-color:#FF9505">
     <h1 class="text-center text-white">AFTERWAY<i class="fa-solid fa-bell ms-5"></i></h1>
     <div class="row justify-content-center">
       <div class="col-sm-8 my-5">
         <div class="search d-flex justify-content-center">
-            <%= form_with url: bars_path, method: :get, class: "d-flex rounded", data: {search_bars_target: "form"} do |f|%>
+            <%= form_with url: myevents_path, method: :get, class: "d-flex rounded", data: {search_events_target: "form"} do |f|%>
               <%= f.text_field :query,
                   value: params[:query],
                   class: "form-control bg-white rounded-pill",
                   placeholder: "Search an Event",
                    data: {
-                    search_bars_target: "input",
-                    action: "keyup->search-bars#update"
+                    search_events_target: "input",
+                    action: "keyup->search-events#update"
                    }
               %>
               <button type="submit" id="submit"  class="border-0" style = "background-color:#FF9505">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </button>
             <% end %>
-          </div>
+        </div>
         <h3 class="text-center text-white m-3 fw-bold"> Let's have a drink!</h3>
         <div class="buttons d-flex justify-content-center justify-content-around">
           <%= link_to "Join an Event", myevents_path, class: "btn bg-white rounded-pill shadow-sm fw-bold", style: "color: #FF9505"%>
@@ -27,6 +27,6 @@
       </div>
     </div>
   </div>
-<%# <%= render 'events/myevents'%>
+<%= render 'events/myevents'%>
 </div>
 <%= render "shared/footer" %>

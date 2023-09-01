@@ -1,0 +1,37 @@
+<h2>My events</h2>
+<h3 class="text-center"> Organizer</h3>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card-form" >
+        <% @host_events.each do |event| %>
+        <h3> <%= link_to "#{event.title}",event_path(event), class:"text-decoration-none" %></h3>
+        <div class="infos d-flex fw-bold justify-content-around">
+        <p><%= event.date %></p>
+        <p>|</p>
+        <p><%= event.hour %></p>
+        <p>|</p>
+        <p><%= event.address %></p>
+        <p>|</p>
+      </div>
+      <p> Status : <%= event.status %></p>
+      <p> Participant(s) : <%= event.users.where.not(id: current_user.id).map { |user| user.first_name }.join(", ") %></p>
+    <% end %>
+  </div>
+</div>
+</div>
+<%# <div class="list" data-search-events-target="list"> %>
+
+  <h3>Guest</h3>
+
+  <% @invitation_events.each do |event| %>
+    <p> <%= link_to "title : #{event.title}", event_path(event) %></p>
+    <p> Host : <%= event.user.first_name %></p>
+    <p> Date : <%= event.date %></p>
+    <p> Address : <%= event.address %></p>
+    <p> Hour : <%= event.hour %></p>
+    <p> Status : <%= event.status %></p>
+    <p> Participant(s) : <%= event.users.where.not(id: current_user.id).map { |user| user.first_name }.join(", ") %></p>
+  <% end %>
+</div>
+<%= render "shared/footer" %>
