@@ -65,9 +65,11 @@
 
 .card-bar-infos-right-pouce{
     color: $secondary-orange;
-    background-color: $secondary-orange;
+    background-color: $thirdly-orange;
+    width: 80px;
     border-radius: 50%;
-    font-size:36px;
+    text-align: center;
+    font-size:26px;
     position: absolute;
     right: 0px;
     top: -200px;
