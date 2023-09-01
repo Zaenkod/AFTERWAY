@@ -5,9 +5,9 @@ export default class extends Controller {
 
   connect() {
     console.log("coucou")
-    console.log(this.formTarget)
-    console.log(this.inputTarget)
-    console.log(this.listTarget)
+    // console.log(this.formTarget)
+    // console.log(this.inputTarget)
+    // console.log(this.listTarget)
   }
 
   update() {
@@ -17,5 +17,17 @@ export default class extends Controller {
       .then((data) => {
         this.listTarget.outerHTML = data
       })
+  }
+
+  focusOnClick() {
+    this.inputTarget.focus()
+  }
+
+  redirect() {
+    const baseURL = window.location.origin
+    window.location.replace(baseURL)
+    setInterval(() => {
+      
+    }, interval);
   }
 }

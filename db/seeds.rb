@@ -11,7 +11,7 @@ puts "Create 6 Users : User1 = Nathaly, User2 = Pierre, User3 = Cédric, User4 =
 user1 = User.create!(
   first_name: "Nathaly",
   last_name: "Gomez",
-  address: "4 rue d'Alsace, Asnières-Sur-Seine",
+  address: "83 rue de Monceau, Paris",
   email: "nath@gmail.com",
   password: "123456"
 )
@@ -19,7 +19,7 @@ user1 = User.create!(
 user2 = User.create!(
   first_name: "Pierre",
   last_name: "d'Anselme",
-  address: "16 Villa Gaudelet, Paris",
+  address: "187 rue de Grenelle, Paris",
   email: "pierre@gmail.com",
    password: "123456"
   )
@@ -27,7 +27,7 @@ user2 = User.create!(
 user3 = User.create!(
   first_name: "Cédric",
   last_name: "Ruault",
-  address: "23 Rue Theodore de Banville, Paris",
+  address: "12 Rue Philippe de Champagne, Paris",
   email: "cédric@gmail.com",
   password: "123456"
 )
@@ -43,7 +43,7 @@ user4 = User.create!(
 user5 = User.create!(
   first_name: "Paul",
   last_name: "Portier",
-  address: "9 Rue Madame de Sanzillon, Clichy",
+  address: "16 Rue Léon Frot, Paris",
   email: "paul@gmail.com",
   password: "123456"
 )
@@ -51,7 +51,7 @@ user5 = User.create!(
 user6 = User.create!(
   first_name: "Cécile",
   last_name: "Veneziani",
-  address: "23 Rue Hoche, Ivry-sur-Seine",
+  address: "154 BIS Bd Macdonald, Paris",
   email: "cecile@gmail.com",
   password: "123456"
 )
@@ -72,17 +72,17 @@ event_names = [
 
 # Générer 10 fausses dates d'évenements
 event_dates = [
-  "04/09/23",
-  "06/11/23",
-  "08/12/23",
-  "07/09/23",
-  "20/11/23",
-  "15/12/23",
-  "11/10/23",
-  "23/09/23",
-  "21/11/23",
-  "18/12/23",
-  "05/09/23"
+  "2023/09/04",
+  "2023/11/06",
+  "2023/12/08",
+  "2023/09/07",
+  "2023/11/20",
+  "2023/12/15",
+  "2023/10/11",
+  "2023/09/23",
+  "2023/11/21",
+  "2023/12/18",
+  "2023/09/05"
 ]
 
 # Générer 10 fausses heures d'évenements
@@ -179,38 +179,15 @@ bar_descriptions = [
   "A bar with an ever-changing menu based on seasonal ingredients."
 ]
 
-
-
-# # On génere 30 bars depuis le fichier json
-# bars.each.take(3) do |bar|
-#   bar = Bar.create!(
-#       name: bar["result"]["name"],
-#       address: bar["result"]["formatted_address"],
-#       price: bar["result"]["price_level"],
-#       category: category.sample,
-#       rating: bar["result"]["rating"],
-#       description: bar_descriptions.sample,
-#       latitude: bar["result"]["geometry"]["location"]["lat"],
-#       longitude: bar["result"]["geometry"]["location"]["lng"],
-#       opening_hours:  bar.dig("result", "opening_hours", "periods")&.first&.dig("open", "time"),
-#       closing_hours:  bar.dig("result", "opening_hours", "periods")&.first&.dig("close", "time")
-#     )
-#   # Attach the photo using your Cloudinary config
-#   bar.photo.attach(io: file, filename: "bar.png", content_type: "image/png")
-#   bar.save!
-# end
-
-
-
 # On récupere les infos des bars depuis le fichier json
 filepath = File.join(Rails.root,"/public/bars.json")
 serialized_bars = File.read(filepath)
 bars = JSON.parse(serialized_bars)
 
 
-puts "Create 30 bars"
-# On génere 30 bars depuis le fichier json
-bars.take(20).each do |bar|
+puts "Create 10 bars"
+# On génere 10 bars depuis le fichier json
+bars.take(10).each do |bar|
   bar = Bar.new(
       name: bar["result"]["name"],
       address: bar["result"]["formatted_address"],
