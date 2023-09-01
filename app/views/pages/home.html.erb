@@ -1,7 +1,7 @@
 <span data-controller="search-bars">
   <div>
-    <div style = "background-color:#FF9505">
-      <h1 class="text-center text-white">AFTERWAY</h1>
+    <div class="banner">
+      <h1>AFTERWAY</h1>
       <div class="row justify-content-center">
         <div class="col-sm-8 my-5">
           <div class="search d-flex justify-content-center">
@@ -15,7 +15,7 @@
                       action: "keyup->search-bars#update"
                     }
                 %>
-                <button type="submit" id="submit"  class="border-0" style = "background-color:#FF9505">
+                <button type="submit" id="submit"  class="border-0" style = "background-color:#FFA559">
                   <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
               <% end %>
@@ -32,4 +32,3 @@
   </div>
   <%= render "shared/homefooter" %>
 </span>
-
