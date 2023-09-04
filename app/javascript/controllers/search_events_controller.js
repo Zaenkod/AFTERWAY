@@ -16,8 +16,8 @@ export default class extends Controller {
 
   fire() {
     if (this.buttonTarget.checked) {
-    this.hostTarget.classList.toggle("d-none");
-    this.invitTarget.classList.toggle("d-none");
+    this.hostTarget.classList.remove("d-none");
+    this.invitTarget.classList.add("d-none");
     this.organizerTarget.classList.toggle("d-none");
     this.guestTarget.classList.toggle("d-none");
     } else {
