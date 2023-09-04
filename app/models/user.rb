@@ -15,6 +15,10 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}, #{email}"
   end
 
+  def find_participant(event)
+    event.participants.find_by(user: self)
+  end
+
   def participations
     events_as_participant.reject { |ev| ev.user == self }
   end
