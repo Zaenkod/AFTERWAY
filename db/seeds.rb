@@ -21,7 +21,7 @@ user2 = User.create!(
   last_name: "d'Anselme",
   address: "187 rue de Grenelle, Paris",
   email: "pierre@gmail.com",
-   password: "123456"
+  password: "123456"
   )
 
 user3 = User.create!(
@@ -219,7 +219,7 @@ bars.take(10).each do |bar|
       date: event_dates.sample,
       address: user1.address,
       hour: event_hours.sample,
-      distance: rand(1..8),
+      distance: rand(5..10),
       category: category.sample,
       price: rand(0..5),
       title: event_names.sample
@@ -237,7 +237,7 @@ bars.take(10).each do |bar|
       date: event_dates.sample,
       address: user4.address,
       hour: event_hours.sample,
-      distance: rand(1..8),
+      distance: rand(5..10),
       category: category.sample,
       price: rand(0..5),
       title: event_names.sample
