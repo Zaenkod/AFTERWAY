@@ -32,6 +32,16 @@ class EventsController < ApplicationController
     # @my_events = @event_bars.where(user: current_user)
     @participant = @event.participants.find_by( user: current_user)
     @event_bars = @event.event_bars.sort_by { |event_bar| -event_bar.votes.count }
+
+    @bars = @event.bars.all
+    @markers = @bars.geocoded.map do |bar|
+      {
+        lat: bar.latitude,
+        lng: bar.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {bar: bar}),
+        marker_html: render_to_string(partial: "marker")
+      }
+    end
   end
 
   def edit
