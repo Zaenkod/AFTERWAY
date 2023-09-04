@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_31_114633) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_04_125818) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,12 +74,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_114633) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.time "hour"
+    t.integer "distance"
     t.string "category"
     t.integer "price"
     t.string "title"
     t.integer "distance"
     t.string "status", default: "Not booked"
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "recipient_id", null: false
+    t.boolean "read", default: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_notifications_on_event_id"
+    t.index ["recipient_id"], name: "index_notifications_on_recipient_id"
   end
 
   create_table "participants", force: :cascade do |t|
@@ -123,6 +134,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_114633) do
   add_foreign_key "event_bars", "bars"
   add_foreign_key "event_bars", "events"
   add_foreign_key "events", "users"
+  add_foreign_key "notifications", "events"
+  add_foreign_key "notifications", "users", column: "recipient_id"
   add_foreign_key "participants", "events"
   add_foreign_key "participants", "users"
   add_foreign_key "votes", "event_bars"
