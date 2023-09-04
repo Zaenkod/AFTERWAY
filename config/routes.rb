@@ -17,5 +17,5 @@ Rails.application.routes.draw do
   end
   resources :votes, only: %i[destroy]
   get "/myevents", to: "events#myevents", as: "myevents"
-
+  get "/recap", to: "pages#recap", as: "recap"
 end

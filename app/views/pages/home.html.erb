@@ -1,86 +1,18 @@
-
-<span data-controller="search-bars">
-  <div>
-    <div class="banner">
-      <h1>AFTERWAY</h1>
-      <div class="row justify-content-center">
-        <div class="col-sm-8 my-5">
-          <div class="search d-flex justify-content-center">
-              <%= form_with url: bars_path, method: :get, class: "d-flex rounded", data: {search_bars_target: "form"} do |f|%>
-                <%= f.text_field :query,
-                    value: params[:query],
-                    class: "form-control bg-white rounded-pill",
-                    placeholder: "Search an Event",
-                    data: {
-                      search_bars_target: "input",
-                      action: "keyup->search-bars#update"
-                    }
-                %>
-                <button type="submit" id="submit"  class="border-0" style = "background-color:#FFA559">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-              <% end %>
-            </div>
-          <h3 class="text-center text-white m-3 fw-bold"> Let's have a drink!</h3>
-          <div class="buttons d-flex justify-content-center justify-content-around">
-            <%= link_to "Join an Event", myevents_path, class: "btn bg-white rounded-pill shadow-sm fw-bold", style: "color: #FF9505"%>
-            <%= link_to "Create an Event", new_event_path, class: "btn bg-white rounded-pill shadow-sm fw-bold", style: "color: #FF9505" %>
-          </div>
-        </div>
-      </div>
-    </div>
-  <%# <%= render 'events/myevents'%>
-  </div>
-
- <% if user_signed_in? %>
- <br>
- <h3 class="fw-bolder text-center" style="color:#CC5803"> Organizer 🍺</h3>
-    <% @host_events.take(2).each do |event| %>
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="card-form" >
-            <h2 class="text-center"> <%= link_to "#{event.title}", event_path(event), class:"text-decoration-none fw-bold", style:"color:#E2711D"%></h2>
-            <div class="infos d-flex fw-bold justify-content-around mt-3">
-              <p><i class="fa-solid fa-calendar-days"></i> <%= event.date.strftime("%a %e %b") %></p>
-              <p>|</p>
-              <p><i class="fa-regular fa-clock"></i> <%= event.hour.strftime("%H h %M") %></p>
-              <p>|</p>
-              <p><i class="fa-solid fa-people-group"></i> <%= event.users.count %></p>
-            </div>
-            <p> Status : <%= event.status %></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <% end %>
-<br>
-<br>
-<h3 class="text-center fw-bolder" style="color:#CC5803"> Guest 🍻</h3>
-<% @invitation_events.take(2).each do |event| %>
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <div class="card-form" >
-        <p>Host : <%= event.user.first_name %></p>
-          <h2 class="text-center"> <%= link_to "#{event.title}", event_path(event), class:"text-decoration-none fw-bold", style:"color:#E2711D"%></h2>
-          <div class="infos d-flex fw-bold justify-content-around mt-3">
-            <p><i class="fa-solid fa-calendar-days"></i> <%= event.date.strftime("%a %e %b") %></p>
-            <p>|</p>
-            <p><i class="fa-regular fa-clock"></i> <%= event.hour.strftime("%H h %M") %></p>
-            <p>|</p>
-            <p><i class="fa-solid fa-people-group"></i> <%= event.users.count %></p>
-          </div>
-            <p> Status : <%= event.status %></p>
-  <p> Participant(s) : <%= event.users.where.not(id: current_user.id).map { |user| user.first_name }.join(", ") %></p>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
-
-<% end %>
-
+<div data-controller="search-events">
+  <%= form_with url: recap_path, method: :get, html: {class: "d-flex rounded", data: {search_events_target: "form"} } do |f|%>
+    <%= f.text_field :query,
+      class: "form-control bg-white rounded-pill",
+      placeholder: "Look for an event",
+      value: params[:query],
+      data: {
+      action: "keyup->search-events#update",
+      search_events_target: "input"
+      }
+    %>
+    <button type="submit" id="submit"  class="border-0" style = "background-color:#FFA559">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  <% end %>
+  <%= render "recap"%>
 </div>
-  <%= render "shared/homefooter" %>
-</span>
+<%= render "shared/homefooter" %>
