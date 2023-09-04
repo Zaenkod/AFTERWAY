@@ -1,0 +1,36 @@
+
+.mapboxgl-popup {
+  max-width: 100px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}
+
+.map-bar-window {
+  overflow: hidden;
+  border-radius: 18px;
+  margin: 8px;
+  margin-bottom: 24px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.map-bar-window-img {
+  height: 100px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.map-bar-window-infos{
+  padding: 6px;
+  font-size: 10px;
+  justify-content: center;
+}
+
+.map-bar-window-infos h2{
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: bold;
+}
