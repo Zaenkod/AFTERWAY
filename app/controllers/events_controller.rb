@@ -46,15 +46,28 @@ class EventsController < ApplicationController
 
   def edit
     @event = Event.find(params[:id])
+    @users = User.all
   end
 
   def update
     @event = Event.find(params[:id])
     if @event.update(event_params)
-      redirect_to myevents_path
+      if @event.address.present?
+        @event.bars << Bar.near(@event.address, @event.distance)
+      else
+        geocode_center
+        @event.bars << Bar.near(@barycenter, @event.distance)
+      end
+      redirect_to event_path(@event)
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    redirect_to myevents_path, status: :see_other
   end
 
   def myevents

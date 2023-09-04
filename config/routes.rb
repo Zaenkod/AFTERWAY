@@ -6,11 +6,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  resources :events, only: %i[new create show update] do
+  resources :events, only: %i[new create show edit update destroy] do
     member do
       patch '/update_participant', to: 'events#update_participant'
     end
-
     resources :event_bars, only: %i[index]
   end
 
