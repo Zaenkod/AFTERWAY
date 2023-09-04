@@ -16,6 +16,7 @@ class User < ApplicationRecord
   end
 
   def participations
-    events_as_participant.reject { |ev| ev.user == self }
+    # events_as_participant.reject { |ev| ev.user == self }
+    events_as_participant.where.not(user: self)
   end
 end
