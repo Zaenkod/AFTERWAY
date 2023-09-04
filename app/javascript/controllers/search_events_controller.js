@@ -2,13 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="search-event"
 export default class extends Controller {
-  static targets = ["form", "input", "list", "button","host","invit"]
-
-  connect() {
-    console.log(this.buttonTarget)
-    console.log(this.hostTarget)
-    console.log(this.invitTarget);
-  }
+  static targets = ["form", "input", "list", "button","host","invit", "guest","organizer"]
 
   update() {
 
@@ -16,16 +10,21 @@ export default class extends Controller {
     fetch(url, {headers: {"Accept": "text/plain"}})
       .then(response => response.text())
       .then((data) => {
-        console.log(data);
         this.listTarget.outerHTML = data;
       })
   }
 
-  button(event) {
-   if (this.buttonTarget.checked) {
-    console.log(this.invitTarget);
-   } else {
-    console.log(this.hostTarget);
-   }
+  fire() {
+    if (this.buttonTarget.checked) {
+    this.hostTarget.classList.toggle("d-none");
+    this.invitTarget.classList.toggle("d-none");
+    this.organizerTarget.classList.toggle("d-none");
+    this.guestTarget.classList.toggle("d-none");
+    } else {
+    this.invitTarget.classList.toggle("d-none");
+    this.hostTarget.classList.toggle("d-none");
+    this.organizerTarget.classList.toggle("d-none");
+    this.guestTarget.classList.toggle("d-none");
+    }
   }
 }
