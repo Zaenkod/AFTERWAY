@@ -2,7 +2,13 @@
 <div data-controller="toggle" class="container">
   <div class="row">
     <div class="col">
-      <div class="card-policy">
+      <div><h3>Recap</h3>
+        <p>Participants : <%= @event.users.map { |user| user.first_name }.join(", ") %> </p>
+        <p>Accepted : <%= @event.participants.select { |user| user.status == "accept"}.map(&:user).map(&:first_name).join(", ") %></p>
+        <p>Declined : <%= @event.participants.select { |user| user.status == "decline"}.map(&:user).map(&:first_name).join(", ") %></p>
+        <p>Pending : <%= @event.participants.select { |user| user.status == nil}.map(&:user).map(&:first_name).join(", ") %></p>
+      </div>
+       <div class="card-policy">
 
       <h1><%= @event.title %></h1>
       <div class="d-flex">
@@ -21,6 +27,7 @@
         </div>
 
         <span data-toggle-target="togglableCard">
+        <h1><%= @event.title %></h1>
           <% @event_bars.each do |event_bar| %>
           <div class="card-bar">
             <%= link_to(bar_path(event_bar.bar)) do %>
@@ -62,11 +69,11 @@
                   <% end %>
 
                 <p><%= link_to "Book this bar", event_bar_path(event_bar),class:"btn btn-small-orange2" %></p>
-
               </div>
             </div>
           </div>
           <% end %>
+        </div>
         </span>
       </div>
     </div>

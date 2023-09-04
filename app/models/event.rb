@@ -10,4 +10,8 @@ class Event < ApplicationRecord
   #   addresses_particpants = User.where(id: participants.pluck(:user_id)).pluck(:address)
   #   Geocoder::Calculations.geographic_center(addresses_particpants)
   # end
+
+  def users_by_status(status)
+    participants.where(status: status).map(&:user)
+  end
 end

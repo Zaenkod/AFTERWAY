@@ -75,6 +75,17 @@ class EventsController < ApplicationController
     @invitation_events = current_user.participations
   end
 
+  def update_participant
+    event = Event.find(params[:id])
+    participant = event.participants.find_by(user: current_user)
+    participant.status = "#{params[:status]}"
+    if participant.save
+      render json: { success: true }
+    else
+      render json: { success: false }
+    end
+  end
+
   private
 
   def geocode_center

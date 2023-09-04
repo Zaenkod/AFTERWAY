@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :events, only: %i[new create show edit update destroy] do
+    member do
+      patch '/update_participant', to: 'events#update_participant'
+    end
     resources :event_bars, only: %i[index]
   end
 
