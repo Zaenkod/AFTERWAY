@@ -1,10 +1,29 @@
 <%= render "shared/navbar" %>
-<div class="container mt-5 border rounded-5 p-5">
-  <h1>Edit my event</h1>
-  <%= simple_form_for (@event) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :date %>
-    <%= f.input :address %>
-    <%= f.button :submit, class: "btn btn-small-orange"  %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card-form" >
+      <h1>Edit your afterwork</h1>
+        <%= simple_form_for (@event) do |f| %>
+          <%= f.input :title, label: 'Title of your event' %>
+          <%= f.input :date, label: ('<i class="fa-regular fa-calendar"></i> Date of your event ').html_safe,
+                      as: :string,
+                      input_html: { data: { controller: "datepicker" } } %>
+          <%= f.input :hour, label: ('<i class="fa-regular fa-clock"></i> Hour of your event ').html_safe%>
+          <%= f.input :distance, label: ('<i class="fa-solid fa-circle-notch"></i> Define the search radius ').html_safe, hint: 'In km' %>
+          <%= f.input :category, label: ('<i class="fa-solid fa-wine-glass-empty"></i>
+          <i class="fa-solid fa-martini-glass-empty"></i>
+          <i class="fa-solid fa-beer-mug-empty"></i>  Category ').html_safe  %>
+          <%= f.input :price, label: ('<i class="fa-solid fa-coins"> </i> Price ').html_safe%>
+          <%= f.input :address, label: ('<i class="fa-solid fa-map-pin"> </i> Adress ').html_safe, hint: 'if blank, your account address will be used' %>
+          <%= f.association :users, collection: @users, label: ('<i class="fa-solid fa-users"> </i> Add participants ').html_safe, label_method: :unique_user %>
+          <div class="banner-create">
+            <%= f.button :submit, class: "btn-small-white"  %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
+
+<%= render "shared/footer" %>
