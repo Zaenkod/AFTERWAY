@@ -77,6 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_31_114633) do
     t.string "category"
     t.integer "price"
     t.string "title"
+    t.integer "distance"
     t.string "status", default: "Not booked"
     t.integer "distance"
     t.index ["user_id"], name: "index_events_on_user_id"

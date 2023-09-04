@@ -49,7 +49,7 @@ class EventsController < ApplicationController
   end
 
   def update
-    @event = event.find(params[:id])
+    @event = Event.find(params[:id])
     if @event.update(event_params)
       redirect_to myevents_path
     else
@@ -60,6 +60,17 @@ class EventsController < ApplicationController
   def myevents
     @host_events = current_user.events
     @invitation_events = current_user.participations
+  end
+
+  def update_participant
+    event = Event.find(params[:id])
+    participant = event.participants.find_by(user: current_user)
+    participant.status = "#{params[:status]}"
+    if participant.save
+      render json: { success: true }
+    else
+      render json: { success: false }
+    end
   end
 
   private
