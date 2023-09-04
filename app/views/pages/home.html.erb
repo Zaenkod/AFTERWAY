@@ -13,6 +13,10 @@
       <i class="fa-solid fa-magnifying-glass"></i>
     </button>
   <% end %>
-  <%= render "recap"%>
+  <% if user_signed_in? %>
+    <%= render "recap"%>
+  <% else %>
+    <p>Please sign in ta race </p>
+  <% end %>
 </div>
 <%= render "shared/homefooter" %>
