@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :participants
 
   has_many :events_as_participant, through: :participants, source: :event
+  has_many :notifications, foreign_key: :recipient_id, class_name: 'Notification'
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
