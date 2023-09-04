@@ -1,8 +1,7 @@
 <%= render "shared/navbar" %>
 <h1>Welcome Back <strong><%= User.find(current_user.id).first_name %>!</strong></h1>
-<p>There are <%=  EventBar.where(participants_id:current_user.id)%> events this month.</p>
 
-<h3 class="fw-bolder ps-3 pt-3" style="color:#CC5803"> Organizer 🍺</h3>
+
 
 <% @host_events.each do |event| %>
   <div class="container">
@@ -53,7 +52,5 @@
         </div>
       </div>
     </div>
-  </div>
-<% end %>
-
+  <% end %>
 <%= render "shared/footer" %>
