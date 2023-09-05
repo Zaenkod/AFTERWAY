@@ -1,6 +1,8 @@
 .banner {
-  background-color:$thirdly-orange;
   padding: 20px 0;
   color:white;
   text-align: center;
+  background-image: asset-url('banner_afterway.png');
+  background-size: cover;
+  background-position: center;
 }
