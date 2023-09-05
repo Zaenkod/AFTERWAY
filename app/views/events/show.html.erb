@@ -3,25 +3,25 @@
   <div  class="container">
     <div class="row">
       <div class="col">
-        <div class="card-policy">
-        <h1><%= @event.title %></h1>
-        <div><h3>Recap</h3>
-          <p>Participants : <%= @event.users.map { |user| user.first_name }.join(", ") %> </p>
-          <p>Accepted : <%= @event.participants.select { |user| user.status == "accept"}.map(&:user).map(&:first_name).join(", ") %></p>
-          <p>Declined : <%= @event.participants.select { |user| user.status == "decline"}.map(&:user).map(&:first_name).join(", ") %></p>
-          <p>Pending : <%= @event.participants.select { |user| user.status == nil}.map(&:user).map(&:first_name).join(", ") %></p>
-        </div>
+        <div class="card-map-list">
+          <h1><%= @event.title %></h1>
 
-        <div class="d-flex">
-          <%# <button data-action="click->toggle#fire" class="btn btn-small-white mb-3 ms-3">Map</button> %>
-          <% if @event.user == current_user %>
-            <p><%= link_to "Edit event", edit_event_path(@event),class:"btn btn-small-white ms-1"%></p>
-            <p><%= link_to "Delete event", event_path(@event),class:"btn btn-small-white ms-1", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
-          <% end %>
-        </div>
+          <div class="card-map-list-recap">
+            <div>
+              <p> <strong>Pending : </strong><%= @event.participants.select { |user| user.status == nil}.map(&:user).map(&:first_name).join(", ") %></p>
+              <p><strong>Accepted : </strong><%= @event.participants.select { |user| user.status == "accept"}.map(&:user).map(&:first_name).join(", ") %></p>
+              <p><strong>Declined : </strong><%= @event.participants.select { |user| user.status == "decline"}.map(&:user).map(&:first_name).join(", ") %></p>
+            </div>
 
-          <div data-toggle-target="togglableElement" class="d-none"
-              style="width: 100%; height: 600px;"
+            <div class="d-flex justify-content-center">
+              <% if @event.user == current_user %>
+                <p><%= link_to ('<i class="fa-solid fa-pen-to-square"></i> Edit event').html_safe, edit_event_path(@event),class:"btn btn-small-white-blue ms-1"%></p>
+                <p><%= link_to  ('<i class="fa-solid fa-trash"></i> Delete event').html_safe, event_path(@event),class:"btn btn-small-white-blue ms-1", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
+              <% end %>
+            </div>
+          </div>
+
+          <div data-toggle-target="togglableElement" class="map-list d-none"
               data-controller="map"
               data-map-markers-value="<%= @markers.to_json %>"
               data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
@@ -41,44 +41,48 @@
                   <span class="card-bar-category"><%= event_bar.bar.category%></span>
                 </div>
                 <div class="card-bar-infos-right">
+                  <div class="card-bar-infos-right-pouce">
+                      <i class="fa-solid fa-thumbs-up" style="color: #ffffff;"></i>
+                  </div>
+
+                  <% if @event.user == current_user %>
+                    <p><%= link_to "Book this bar", event_bar_path(event_bar),class:"btn btn-small-blue" %></p>
+                  <% end %>
+
+                  <% if @participant.voted_for?(event_bar) %>
+                    <p><%= link_to "Cancel my vote",
+                                    vote_path(event_bar.votes.find_by(participant: @participant)),
+                                    class: "btn btn-small-white2",
+                                    data: {
+                                      turbo_method: :delete # ici on dit à Turbo de lancer une requête en méthode POST plutôt qu'en GET
+                                    } %></p>
+                    <p class="">You have voted for this bar!</p>
+                  <% elsif @participant.votes.count < 3 %>
+                    <%# l'ancien lien, qui sans paramètre est par défaut en methode http GET %>
+
+                    <%# Ici on crée un lien en méthode POST pour atteindre l'action VotesController#create %>
+                    <div class="card-bar-infos-right-pouce">
+                      <%= link_to(event_bar_votes_path(event_bar), data: {
+                                            turbo_method: :post # ici on dit à Turbo de lancer une requête en méthode POST plutôt qu'en GET
+                                          }) do %>
+                        <i class="fa-solid fa-thumbs-up" style="color: #ffffff;"></i>
+                      <% end %>
+                    </div>
+                  <% end %>
+
                   <p> <%= "#{event_bar.votes.count} vote for this bar" %></p>
                   <%# On n'affiche le lien de vote uniquement si l'utilisateur n'a pas encore voté pour cet event bar: %>
                   <%# la méthode "voted_for?" est définie dans le modèle participant %>
                   <%# @participant est défini dans EventsController#show %>
 
-                    <% if @participant.voted_for?(event_bar) %>
-                      <p class="">You have voted for this bar!</p>
-                      <p><%= link_to "Cancel my vote",
-                                      vote_path(event_bar.votes.find_by(participant: @participant)),
-                                      class: "btn btn-small-orange2",
-                                      data: {
-                                        turbo_method: :delete # ici on dit à Turbo de lancer une requête en méthode POST plutôt qu'en GET
-                                      } %></p>
-                    <% elsif @participant.votes.count < 3 %>
-                      <%# l'ancien lien, qui sans paramètre est par défaut en methode http GET %>
-
-                      <%# Ici on crée un lien en méthode POST pour atteindre l'action VotesController#create %>
-                      <div class="card-bar-infos-right-pouce">
-                      <%= link_to(event_bar_votes_path(event_bar), data: {
-                                            turbo_method: :post # ici on dit à Turbo de lancer une requête en méthode POST plutôt qu'en GET
-                                          }) do %>
-                        <i class="fa-solid fa-thumbs-up"></i>
-                      <% end %>
-                      </div>
-
-                    <% end %>
-
-                  <p><%= link_to "Book this bar", event_bar_path(event_bar),class:"btn btn-small-orange2" %></p>
                 </div>
               </div>
             </div>
             <% end %>
-          </div>
           </span>
         </div>
       </div>
     </div>
   </div>
 </span>
-</div>
 <div><%= render "shared/homefooter" %></div>
