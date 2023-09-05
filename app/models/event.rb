@@ -4,6 +4,7 @@ class Event < ApplicationRecord
   has_many :bars, through: :event_bars
   has_many :participants, dependent: :destroy
   has_many :users, through: :participants, source: :user
+  has_many :notifications, dependent: :destroy
   validates :title, :date, :distance, :price, presence: true
 
   # def geocode_center

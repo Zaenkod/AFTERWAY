@@ -1,9 +1,8 @@
  <%= render "shared/navbar" %>
 <div class="container">
     <div class="card-bar">
-        <div>
-          <%= cl_image_tag @bar.photo.key, crop: :fit, class:"card-bar-img2"%>
-          <h3 class="card-title font-weight-bold text-center"><%= @bar.name %></h3>
+        <div class="card-bar-img d-flex align-items-end" style="background-image: url('<%= cl_image_path @bar.photo.key, height: 300 %>')">
+          <h3 class="card-title font-weight-bold text-center text-white"><%= @bar.name %></h3>
         </div>
           <div class="card-body-bar">
             <p class='text-center'><%= @bar.address %></p>
