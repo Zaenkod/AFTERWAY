@@ -1,5 +1,5 @@
 .card-body-bar {
-  background-color: $fourthly-orange;
+  // background-color: $fourthly-orange;
   border-radius: 0 0 8px 8px;
   padding: 18px;
 }
@@ -34,7 +34,6 @@
 
 .card-bar {
   overflow: hidden;
-  background: white;
   border:solid;
   border-color: $thirdly-orange;
   border-radius: 18px;
@@ -51,7 +50,7 @@
 }
 
 .card-bar-img2 {
-  height: 400px;
+  height: 300px;
   width: 100%;
   object-fit: cover;
 }

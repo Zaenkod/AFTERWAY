@@ -51,8 +51,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_125818) do
     t.float "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "opening_hours"
-    t.string "closing_hours"
+    t.time "opening_hours"
+    t.time "closing_hours"
     t.float "latitude"
     t.float "longitude"
   end
@@ -78,7 +78,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_125818) do
     t.string "category"
     t.integer "price"
     t.string "title"
-    t.integer "distance"
     t.string "status", default: "Not booked"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
