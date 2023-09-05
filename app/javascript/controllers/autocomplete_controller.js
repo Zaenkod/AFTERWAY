@@ -5,7 +5,6 @@ import TomSelect from 'tom-select'
 // Connects to data-controller="autocomplete"
 export default class extends Controller {
   connect() {
-    console.log("connected")
     new TomSelect(this.element,{
       persist: false,
       createOnBlur: true,

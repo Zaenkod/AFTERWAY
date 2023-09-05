@@ -3,12 +3,12 @@
   <section class="mx-auto">
 
     <div class="card-bar">
-      <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-        <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2748&q=80" class="img-fluid" />
+      <div class="align-items-end bg-image booking-div d-flex hover-overlay justify-content-center pb-4 ripple" data-mdb-ripple-color="light">
+        <div class="centered"><%= @event_bar.bar.name %></div>
       </div>
         <div class="card-body-bar">
+          <p><i class="fa-solid fa-location-crosshairs"></i><%= @event_bar.bar.address %></p>
           <h3 class="card-title font-weight-bold"><p><%= @event_bar.bar.name %></p></h3>
-          <p><%= @event_bar.bar.address %></p>
             <div class="d-flex justify-content-around">
               <div class="Stars" style="--rating: 2.3;" aria-label="Rating of this product is 2.3 out of 5.">
               </div>

@@ -41,6 +41,12 @@
   margin-bottom: 24px;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  .bg-image{
+    background-image: url('https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2748&q=80');
+    height: 260px;
+    background-size: cover;
+    background-position: center;
+  }
 }
 
 .card-bar-img {
@@ -91,4 +97,14 @@
   background: #ECF9FF;;
   transition: background 0.3s ease;
   border: 1px solid $primary-grey;
+}
+
+.centered {
+  color: white;
+  font-weight: bold;
+  font-size:26px;
+}
+
+.booking-div{
+  position: relative;
 }
