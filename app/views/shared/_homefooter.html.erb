@@ -1,20 +1,19 @@
-<div class="footer-i bg-white d-flex justify-content-around w-100 align-items-center footer-icons footer-bottom-page">
-  <%= link_to "", '#', class: "fa-solid fa-magnifying-glass", style:"color:#E2711D", data: { action: 'click->search-bars#focusOnClick' }%>
-  <div>
-    <%= link_to "", myevents_path, class: "fa-solid fa-bell", style:"color:#E2711D"%>
-    <div class="<%= 'd-none' if @notification_counter == 0 %>" data-notifications-subscription-target='counter'>
-      <%= @notification_counter %>
-    </div>
-  </div>
+<div class="footer-i d-flex justify-content-around w-90 align-items-center footer-icons footer-bottom-page">
+  <%= link_to root_path, class: "text-decoration-none" do %>
+    <i class="fa-solid fa-house fa-2x text-white"></i>
+  <% end %>
+  <%= link_to new_event_path, class: "text-decoration-none" do %>
+    <i class="fa-solid fa-circle-plus fa-5x" style="color:#FF6E40"></i>
+  <% end %>
 
   <div class="dropdown">
-    <img class="avatar dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://kitt.lewagon.com/placeholder/users/ssaunier" />
-    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+  <i class="avatar dropdown-toggle fa-solid fa-user fa-2x text-white" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+   <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
       <% if user_signed_in? %>
-        <%= link_to "My events", myevents_path, class:"dropdown-item"%>
         <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
       <% else %>
         <%= link_to "Log in", new_user_session_path, class: "dropdown-item" %>
       <% end %>
     </div>
   </div>
+</div>
