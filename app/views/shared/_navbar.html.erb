@@ -1,36 +1,13 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon sticky-top">
+<div class="navbar navbar-lewagon sticky-top">
   <div class="container-fluid">
     <div class="back-button">
       <%= link_to :back do %>
-      <i class="fa-solid fa-circle-arrow-left fa-2xl" style="color: #ff9300;"></i>
+      <i class="fa-solid fa-circle-arrow-left fa-2xl" style="color: #ffffff;"></i>
       <% end %>
     </div>
 
     <h1>AFTERWAY</h1>
 
-    <div class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <%= image_tag "avatar.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-    </div>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <div class= "d-inline-flex align-items-center">
-            <li class="nav-item dropdown">
-                  <%= link_to "My events", myevents_path, class: "dropdown-item" %>
-                  <%#= link_to "Messsages", '', class: "dropdown-item" %>
-                  <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
-            </li>
-          </div>
-        <% else %>
-          <li class="nav-item d-inline-flex">
-            <div class="me-3">
-              <%= link_to "Sign-up", new_user_registration_path, class: "btn btn-small-orange" %>
-              <%= link_to "Login", new_user_session_path, class: "btn btn-small-orange" %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+    <i class="fa-solid fa-bell fa-2xl" style="color: #ffffff;"></i>
   </div>
 </div>
