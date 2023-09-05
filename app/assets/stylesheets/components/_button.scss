@@ -50,6 +50,7 @@
   color: white;
 }
 
+
 .btn-small-white-blue {
   padding: 4px 10px;
   border-radius: 4px;
@@ -68,4 +69,12 @@
   background: $bleu;
   transition: background 0.3s ease;
   border: 1px solid white;
+}
+
+.btn-btn-primary {
+  background-color: #1E3D59;
+  color: white;
+  border-color: #3276b1;
+  border-radius: 25px;
+
 }
