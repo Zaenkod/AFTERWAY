@@ -34,7 +34,38 @@
   border: 1px solid $secondary-orange;
 }
 
+.btn-small-white2 {
+  color: $primary-grey;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: bold;
+  background: $beige;
+  transition: background 0.3s ease;
+  border: 1px solid $bleu;
+}
+
 .btn-small-white:hover {
   background: $thirdly-orange;
   color: white;
+}
+
+.btn-small-white-blue {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: white;
+  transition: background 0.3s ease;
+  border: 1px solid $bleu;
+}
+
+.btn-small-blue {
+  color:white;
+  padding: 4px 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: $bleu;
+  transition: background 0.3s ease;
+  border: 1px solid white;
 }
