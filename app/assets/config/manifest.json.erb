@@ -1,0 +1,17 @@
+{
+  "background_color": "white",
+  "description": "Present to the people a list a of bar according to their taste and not too far from the working place and the home of everybody",
+  "display": "fullscreen",
+  "name": "AFTERWAY",
+  "icons": [
+    <% files = Dir.entries(Rails.root.join("app/assets/images/icons/")).select {|f| !File.directory? f} %>
+    <% files.each_with_index do |file, index| %>
+      <% match = file.match(/.+-(?<size>\d{2,3}x\d{2,3}).png/) %>
+      {
+        "src": "<%= image_path "icons/#{file}" %>",
+        "sizes": "<%= match && match[:size] %>",
+        "type": "image/png"
+      }<%= "," unless (files.size - 1) == index %>
+    <% end %>
+  ]
+}

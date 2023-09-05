@@ -1,0 +1,93 @@
+.card-map-list {
+  color: $primary-grey;
+}
+
+.card-map-list h1 {
+  color: $orange-vif;
+  text-align: center;
+  margin-top: 16px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.card-map-list p {
+  color: $bleu;
+}
+
+.card-bar-infos-left a {
+  color : $primary-grey;
+  text-decoration: none;
+}
+
+.card-map-list-recap {
+  padding: 18px;
+}
+
+.card-bar {
+  overflow: hidden;
+  border:solid;
+  border-color: $thirdly-orange;
+  border-radius: 18px;
+  margin: 8px;
+  margin-bottom: 24px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.card-bar-img {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-bar-infos{
+  background-color: $fourthly-orange;
+  padding:16px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.card-bar-infos-left{
+  font-size:18px;
+}
+
+.card-bar-infos-right{
+  font-size:10px;
+  margin-left: 10px;
+}
+
+.card-bar-infos-right-pouce{
+    background-color: $bleu;
+    border-radius: 50%;
+    border:solid;
+    border-color:white;
+    text-align: center;
+    font-size:26px;
+    position: absolute;
+    right: 0px;
+    top: -200px;
+    width: 40px;
+}
+
+.card-bar-category{
+  padding: 4px 10px;
+  font-style: italic;
+  font-size: 16px;
+  border-radius: 10px;
+  background:$orange-mat;
+  transition: background 0.3s ease;
+  border: 1px solid $primary-grey;
+}
+
+.map-list {
+  border:solid;
+  border-color: $bleu;
+  border-radius: 18px;
+  width: 100%;
+  height: 375px;
+}
+
+.mapboxgl-canvas {
+  height: 375px!important;
+  width: 100%!important;
+}
