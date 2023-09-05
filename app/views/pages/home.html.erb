@@ -1,30 +1,45 @@
-<div data-controller="search-events">
-  <%= form_with url: recap_path, method: :get, html: {class: "d-flex rounded", data: {search_events_target: "form"} } do |f|%>
-    <%= f.text_field :query,
-      class: "form-control bg-white rounded-pill",
-      placeholder: "Look for an event",
-      value: params[:query],
-      data: {
-      action: "keyup->search-events#update",
-      search_events_target: "input"
-      }
-    %>
-    <button type="submit" id="submit"  class="border-0" style = "background-color:#FFA559">
-      <i class="fa-solid fa-magnifying-glass"></i>
-    </button>
-  <% end %>
-  <% if user_signed_in? %>
-  <div class="form-check form-switch"  data-action="click->search-events#fire">
-  <label class="form-check-label" for="flexSwitchCheckDefault">
-    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" data-search-events-target="button" placeholder="My events" checked>
-    <span class="host" data-search-events-target="organizer">Organizer</span>
-    <span class="invit d-none" data-search-events-target="guest">Guest</span>
-  </label>
+<div class="banner">
+  <h1>AFTERWAY</h1>
+  <div class="row justify-content-center">
+    <div class="col-sm-8 my-3">
+      <div class="search justify-content-center mt-5">
+        <div data-controller="search-events">
+          <%= form_with url: myevents_path, method: :get, html: {class: "d-flex rounded", data: {search_events_target: "form"} } do |f|%>
+            <button type="submit" id="submit"  class="border-0" style = "background-color:#1E3D59; color:#FFC13B">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <%= f.text_field :query,
+              class: "form-control rounded-pill border-0",
+              style: "background-color:#1E3D59; color:#FFC13B",
+              placeholder: "Look for an event",
+              value: params[:query],
+              data: {
+              action: "keyup->search-events#update",
+              search_events_target: "input"
+              }
+            %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<h2>Events</h2>
-    <%= render "recap"%>
-  <% else %>
-    <p>Please sign in ta race </p>
-  <% end %>
+<% if user_signed_in? %>
+<div class="events" style="background-color:#F5F0E1">
+  <h1 class="text-center p-3">Welcome Back
+  <strong><%= User.find(current_user.id).first_name %>!</strong>
+  <i class="fa-solid fa-bell" style="color:#FF6E40"></i></h1>
+    <div class="form-check form-switch d-flex justify-content-center"  data-action="click->search-events#fire">
+      <label class="form-check-label" for="flexSwitchCheckDefault">
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" data-search-events-target="button" checked>
+      <span class="host" data-search-events-target="organizer">Organizer</span>
+      <span class="invit d-none" data-search-events-target="guest">Guest</span>
+    </label>
+  </div>
+
+  <%= render "events/myevents"%>
 </div>
+<% else %>
+  <p>Please sign in ta race </p>
+<% end %>
 <%= render "shared/homefooter" %>

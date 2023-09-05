@@ -73,6 +73,22 @@ class EventsController < ApplicationController
   def myevents
     @host_events = current_user.events
     @invitation_events = current_user.participations
+    if params[:query].present?
+      @host_events = @host_events.where("title ILIKE ?", "%#{params[:query]}%")
+      @invitation_events = @invitation_events.where("title ILIKE ?", "%#{params[:query]}%")
+    end
+
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text {
+        render partial: "myevents",
+        locals: {
+          host_events: @host_events,
+          invitation_events: @invitation_events
+        },
+        formats: [:html]
+      }
+    end
   end
 
   def update_participant

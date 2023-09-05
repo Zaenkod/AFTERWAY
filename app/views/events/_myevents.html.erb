@@ -1,0 +1,64 @@
+<div data-search-events-target="list" style="background-color:#F5F0E1">
+  <br>
+  <div data-search-events-target="host">
+    <% @host_events.each do |event| %>
+      <div class="container">
+        <div class="row">
+          <div class="col rounded-pill border" style="background-color:#FFC13B; border-color:#FFC13B">
+          <h5 class="text-center">
+
+          <%= link_to "#{event.title}", event_path(event), class:"text-decoration-none fw-bold", style:"color:white"%></h2>
+            <div class="card-event d-flex">
+              <%= link_to event_path(event) do %>
+                <%= cl_image_tag Bar.find(event.bar_ids.first).photo.key, crop: :fit, class:"card-bar-img"%>
+              <% end %>
+              <div class="infos d-flex fw-bold justify-content-around mt-3">
+                <p><i class="fa-solid fa-calendar-days"></i> <%= event.date.strftime("%a %e %b") %></p>
+                <p>|</p>
+                <p><i class="fa-regular fa-clock"></i> <%= event.hour.strftime("%H h %M") %></p>
+                <p>|</p>
+                <p><i class="fa-solid fa-people-group"></i> <%= event.users.count %></p>
+                <p> Guest(s) : <%= event.users.where.not(id: current_user.id).map { |user| user.first_name }.join(", ") %></p>
+              </div>
+              <i class="fa-regular fa-circle-right" style="color:white"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <br>
+  <br>
+  <div data-search-events-target="invit" class="d-none">
+    <% @invitation_events.each do |event| %>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="card-form" >
+              <p>Host : <%= event.user.first_name %></p>
+              <h2 class="text-center"> <%= link_to "#{event.title}", event_path(event), class:"text-decoration-none fw-bold", style:"color:#E2711D"%></h2>
+              <div class="infos d-flex fw-bold justify-content-around mt-3">
+                <p><i class="fa-solid fa-calendar-days"></i> <%= event.date.strftime("%a %e %b") %></p>
+                <p>|</p>
+                <p><i class="fa-regular fa-clock"></i> <%= event.hour.strftime("%H h %M") %></p>
+                <p>|</p>
+                <p><i class="fa-solid fa-people-group"></i> <%= event.users.count %></p>
+              </div>
+              <p> Status : <%= event.status %></p>
+              <p> Participant(s) : <%= event.users.where.not(id: current_user.id).map { |user| user.first_name }.join(", ") %></p>
+              <p data-controller="answer" data-answer-event-id-value="<%= event.id %>" data-answer-participant-id-value="<%= current_user.find_participant(event).id %>"> Answer :
+                <% unless current_user.find_participant(event).status == "accept" %>
+                  <button data-action="click->answer#accept" data-status="accept" data-answer-target="accept" class="btn btn-success">Accept</button>
+                <% end %>
+                <% unless current_user.find_participant(event).status == "decline" %>
+                  <button data-action="click->answer#decline" data-status="decline" data-answer-target="decline" class="btn btn-danger">Decline</button>
+                <% end %>
+              <button data-action="click->answer#reset" data-status="reset" data-answer-target="reset" class="btn btn-warning">Reset</button></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= render "shared/footer" %>
