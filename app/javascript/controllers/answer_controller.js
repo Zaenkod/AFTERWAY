@@ -28,7 +28,6 @@ export default class extends Controller {
       if (data.success) {
         this.declineTarget.classList.add("d-none");
         this.acceptTarget.innerText = "Accepted";
-        console.log(data.success);
       } else {
         alert("Action failed, please try again")
       }
