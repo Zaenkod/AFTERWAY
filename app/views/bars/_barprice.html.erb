@@ -1,3 +1,7 @@
-<% @bar.price.times do %>
-<%= "€" %>
+<% if @bar.price == nil  %>
+    <%= "No price info" %>
+  <% else %>
+    <% @bar.price.times do %>
+    <%= "€" %>
+    <% end %>
 <% end %>
