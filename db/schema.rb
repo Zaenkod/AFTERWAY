@@ -74,12 +74,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_04_125818) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.time "hour"
-    t.integer "distance"
     t.string "category"
     t.integer "price"
     t.string "title"
-    t.integer "distance"
     t.string "status", default: "Not booked"
+    t.integer "distance"
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
