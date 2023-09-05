@@ -1,45 +1,64 @@
-<div class="banner">
-  <h1>AFTERWAY</h1>
-  <div class="row justify-content-center">
-    <div class="col-sm-8 my-3">
-      <div class="search justify-content-center mt-5">
-        <div data-controller="search-events">
-          <%= form_with url: myevents_path, method: :get, html: {class: "d-flex rounded", data: {search_events_target: "form"} } do |f|%>
-            <button type="submit" id="submit"  class="border-0" style = "background-color:#1E3D59; color:#FFC13B">
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-            <%= f.text_field :query,
-              class: "form-control rounded-pill border-0",
-              style: "background-color:#1E3D59; color:#FFC13B",
-              placeholder: "Look for an event",
-              value: params[:query],
-              data: {
-              action: "keyup->search-events#update",
-              search_events_target: "input"
-              }
-            %>
-          <% end %>
-        </div>
+<div data-controller="search-events">
+  <div class="banner">
+    <h1>AFTERWAY</h1>
+    <div class="row justify-content-center">
+      <div class="col-sm-8 my-3">
+        <div class="search justify-content-center mt-5">
+            <%= form_with url: myevents_path, method: :get, html: {class: "d-flex rounded", data: {search_events_target: "form"} } do |f|%>
+              <button type="submit" id="submit"  class="border-0" style = "background-color:#1E3D59; color:#FFC13B">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+              <%= f.text_field :query,
+                class: "form-control rounded-pill border-0",
+                style: "background-color:#1E3D59; color:#FFC13B",
+                placeholder: "Look for an event",
+                value: params[:query],
+                data: {
+                action: "keyup->search-events#update",
+                search_events_target: "input"
+                }
+              %>
+            <% end %>
+          </div>
       </div>
     </div>
   </div>
-</div>
-<% if user_signed_in? %>
-<div class="events" style="background-color:#F5F0E1">
-  <h1 class="text-center p-3">Welcome Back
-  <strong><%= User.find(current_user.id).first_name %>!</strong>
-  <i class="fa-solid fa-bell" style="color:#FF6E40"></i></h1>
-    <div class="form-check form-switch d-flex justify-content-center"  data-action="click->search-events#fire">
-      <label class="form-check-label" for="flexSwitchCheckDefault">
-      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" data-search-events-target="button" checked>
-      <span class="host" data-search-events-target="organizer">Organizer</span>
-      <span class="invit d-none" data-search-events-target="guest">Guest</span>
-    </label>
-  </div>
-
-  <%= render "events/myevents"%>
+  <% if  user_signed_in? %>
+    <div class="events" style="background-color:#F5F0E1">
+      <h1 class="text-center p-3">Welcome Back
+        <strong><%= User.find(current_user.id).first_name %>!</strong>
+      <div class="d-flex justify-content-center">
+        <div class="<%= 'd-none ' if @notification_counter == 0 %> me-2" data-notifications-subscription-target='counter'>
+          <p style="font-size:12px"><%= @notification_counter %></p>
+        </div>
+        <%= link_to "", root_path, class: "fa-solid fa-bell fa-4px", style:"color: #FF6E40"%>
+      </div>
+      </h1>
+      <div class="form-check form-switch d-flex justify-content-center"  data-action="click->search-events#fire">
+        <label class="form-check-label" for="flexSwitchCheckDefault">
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" data-search-events-target="button" checked>
+          <span class="host" data-search-events-target="organizer">Organizer</span>
+          <span class="invit d-none" data-search-events-target="guest">Guest</span>
+        </label>
+      </div>
+      <%= render "events/myevents"%>
+    </div>
 </div>
 <% else %>
-  <p>Please sign in ta race </p>
+<div class="card rounded-pill mt-5 border-0 p-5" style ="background-color:#FFC13B">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center fw-bolder">Let's have a drink  🍻!</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col m-2">
+        <div class="buttons d-flex justify-content-center justify-content-around">
+          <%= link_to "Join an Event", myevents_path, class:"btn bg-white rounded-pill btn-sm fw-bolder" , style: "color:#FF6E40"%>
+          <%= link_to "Create an Event", new_event_path, class: "btn bg-white rounded-pill btn-sm fw-bolder" , style: "color:#FF6E40" %>
+        </div>
+    </div>
+  </div>
+</div>
 <% end %>
 <%= render "shared/homefooter" %>
