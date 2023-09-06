@@ -13,11 +13,10 @@ class EventsController < ApplicationController
 
     if @event.save
       Participant.create!(event: @event, user: current_user)
-
       if @event.address.present?
         @event.bars << Bar.near(@event.address, @event.distance)
       else
-        geocode_center
+        @barycenter = @event.geocode_center
         @event.bars << Bar.near(@barycenter, @event.distance)
       end
       redirect_to event_path(@event)
@@ -103,11 +102,6 @@ class EventsController < ApplicationController
   end
 
   private
-
-  def geocode_center
-    addresses_participants = @event.users.pluck(:latitude, :longitude)
-    @barycenter = Geocoder::Calculations.geographic_center(addresses_participants)
-  end
 
   def event_params
     params.require(:event).permit(:title, :date, :address, :distance, :hour, :category, :price, :users, user_ids: [])

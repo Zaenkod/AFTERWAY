@@ -4,7 +4,7 @@
       <div class="card-event justify-content-between">
         <div class="image">
           <%= link_to event_path(event) do %>
-            <%= cl_image_tag Bar.find(event.bar_ids.first).photo.key, crop: :fit, class:"card-bar-img"%>
+            <%= cl_image_tag Bar.find(event.bar_ids.first).photo.key, crop: :fit, class:"card-event-img"%>
           <% end %>
         </div>
         <div class="card-event-infos">
@@ -14,7 +14,7 @@
             </div>
           </div>
           <div class="row d-flex">
-            <div class="col d-flex justify-content-around">
+            <div class="col d-flex">
               <p>
                 <strong>
                   <i class="fa-solid fa-calendar-days"></i> <%= event.date.strftime("%a %e %b") %>
@@ -27,12 +27,12 @@
             </div>
           </div>
           <div class="row d-flex">
-            <div class="col d-flex justify-content-around">
+            <div class="col">
                 <p>Status : <strong><%= event.status %></strong></p>
             </div>
           </div>
         </div>
-        <div class="icon">
+        <div class="icon" style="margin-top: 15px">
           <%= link_to event_path(event) do %>
             <i class="fa-regular fa-circle-right fa-3x" style="color:white"></i>
           <% end %>
