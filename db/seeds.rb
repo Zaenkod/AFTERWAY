@@ -183,7 +183,7 @@ bar_descriptions = [
 filepath = File.join(Rails.root,"/public/bars.json")
 serialized_bars = File.read(filepath)
 bars = JSON.parse(serialized_bars)
-
+bars1 =[]
 
 puts "Create 10 bars"
 # On génere 10 bars depuis le fichier json
@@ -201,55 +201,56 @@ bars.take(10).each do |bar|
       closing_hours:  bar.dig("result", "opening_hours", "periods")&.first&.dig("close", "time")
     )
 
-  # On récupere une image random d'un bar via unsplash
-  url = "https://api.unsplash.com/photos/random?client_id=#{ENV["ACCESS_KEY"]}&query=bar"
-  # Fetch this URL, it will return a json containing infos about 1 random photo
-  photo_serialized = URI.open(url).read
-  photo_json = JSON.parse(photo_serialized)
-  # Get the URL for one of the sizes (small is the smallest obvy)
-  photo_url = photo_json["urls"]["small"]
-  # Download this photo and save it into a variable
-  file = URI.open(photo_url)
-  # Attach the photo using your Cloudinary config
-  bar.photo.attach(io: file, filename: "bar.png", content_type: "image/png")
+  # # On récupere une image random d'un bar via unsplash
+  # url = "https://api.unsplash.com/photos/random?client_id=#{ENV["ACCESS_KEY"]}&query=bar"
+  # # Fetch this URL, it will return a json containing infos about 1 random photo
+  # photo_serialized = URI.open(url).read
+  # photo_json = JSON.parse(photo_serialized)
+  # # Get the URL for one of the sizes (small is the smallest obvy)
+  # photo_url = photo_json["urls"]["small"]
+  # # Download this photo and save it into a variable
+  # file = URI.open(photo_url)
+  # # Attach the photo using your Cloudinary config
+  # bar.photo.attach(io: file, filename: "bar.png", content_type: "image/png")
   bar.save!
-
-  puts "Create 1 event for each bar organize by le N avec toutes l'équipe"
-    event = user1.events.create!(
-      date: event_dates.sample,
-      hour: event_hours.sample,
-      distance: rand(5..10),
-      category: category.sample,
-      price: rand(0..5),
-      title: event_names.sample
-    )
-    Participant.create!(event: event, user: user2)
-    Participant.create!(event: event, user: user3)
-    Participant.create!(event: event, user: user4)
-    Participant.create!(event: event, user: user5)
-    Participant.create!(event: event, user: user6)
-    Participant.create!(event: event, user: user1)
-
-    EventBar.create!(event: event, bar: bar, status: nil)
-    barycenter = event.geocode_center
-    event.bars << Bar.near(barycenter, event.distance)
-
-  puts "Create 1 event organize by le M avec toute l'équipe sans le P"
-    event = user4.events.create!(
-      date: event_dates.sample,
-      hour: event_hours.sample,
-      distance: rand(5..10),
-      category: category.sample,
-      price: rand(0..5),
-      title: event_names.sample
-    )
-    Participant.create!(event: event, user: user4)
-    Participant.create!(event: event, user: user1)
-    Participant.create!(event: event, user: user3)
-    Participant.create!(event: event, user: user6)
-    EventBar.create!(event: event, bar: bar, status: nil)
-    barycenter = event.geocode_center
-    event.bars << Bar.near(barycenter, event.distance)
+  bars1 << bar
 end
+puts "Create 1 event for each bar organized by la N avec toute l'équipe"
+event = user1.events.create!(
+  date: event_dates.sample,
+  hour: event_hours.sample,
+  distance: 2,
+  category: category.sample,
+  price: rand(0..5),
+  title: event_names.sample
+)
+Participant.create!(event: event, user: user2)
+Participant.create!(event: event, user: user3)
+Participant.create!(event: event, user: user4)
+Participant.create!(event: event, user: user5)
+Participant.create!(event: event, user: user6)
+Participant.create!(event: event, user: user1)
+barycenter = event.geocode_center
+event.bars << Bar.near(barycenter, event.distance)
 
-puts "Total : 20 bars, 40 Events et EventsBar, 6 Users"
+EventBar.create!(event: event, bar: event.bars.first, status: nil)
+
+  # puts "Create 1 event organized by le M avec toute l'équipe sans le P"
+  #   event = user4.events.create!(
+  #     date: event_dates.sample,
+  #     hour: event_hours.sample,
+  #     distance: rand(5..10),
+  #     category: category.sample,
+  #     price: rand(0..5),
+  #     title: event_names.sample
+  #   )
+  #   Participant.create!(event: event, user: user4)
+  #   Participant.create!(event: event, user: user1)
+  #   Participant.create!(event: event, user: user3)
+  #   Participant.create!(event: event, user: user6)
+  #   EventBar.create!(event: event, bar: bar, status: nil)
+  #   barycenter = event.geocode_center
+  #   event.bars << Bar.near(barycenter, event.distance)
+
+
+puts "Total : 10 bars, 20 Events et EventsBar, 6 Users"
