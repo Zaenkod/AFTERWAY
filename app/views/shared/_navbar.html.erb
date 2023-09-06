@@ -2,17 +2,17 @@
   <div class="container">
     <div class="back-button">
       <%= link_to :back do %>
-      <i class="fa-solid fa-circle-arrow-left fa-2xl" style="color: #ffffff;"></i>
+      <i class="fa-solid fa-circle-arrow-left fa-xl" style="color: #ffffff;"></i>
       <% end %>
     </div>
-    
+
     <h1>AFTERWAY</h1>
 
     <div class="d-flex align-items-center">
       <div class="<%= 'd-none ' if @notification_counter == 0 %> me-2" data-notifications-subscription-target='counter'>
         <%= @notification_counter %>
       </div>
-      <%= link_to "", root_path, class: "fa-solid fa-bell fa-2xl", style:"color: #ffffff"%>
+      <%= link_to "", root_path, class: "fa-solid fa-bell fa-xl", style:"color: #ffffff"%>
     </div>
   </div>
 
