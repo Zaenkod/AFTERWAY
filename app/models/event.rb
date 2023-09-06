@@ -15,4 +15,9 @@ class Event < ApplicationRecord
   def users_by_status(status)
     participants.where(status: status).map(&:user)
   end
+
+  def geocode_center
+    addresses_participants = users.pluck(:latitude, :longitude)
+    @barycenter = Geocoder::Calculations.geographic_center(addresses_participants)
+  end
 end
