@@ -32,6 +32,9 @@
   background: white;
   transition: background 0.3s ease;
   border: 1px solid $secondary-orange;
+  position: absolute;
+  right: 0px;
+  top: -200px;
 }
 
 .btn-small-white2 {
@@ -64,12 +67,15 @@
 .btn-small-blue {
   color:white;
   padding: 4px 10px;
-  font-size: 16px;
+  font-size: 22px;
   border-radius: 4px;
   font-weight: bold;
   background: $bleu;
   transition: background 0.3s ease;
   border: 1px solid white;
+  position: absolute;
+  right: 235px;
+  top: -200px;
 }
 
 .btn-btn-primary {

@@ -58,6 +58,7 @@
 }
 
 .card-bar-infos-right{
+  width : 100px;
   font-size:10px;
   margin-left: 10px;
 }
@@ -87,6 +88,7 @@
   position: absolute;
   right: 0px;
   top: -70px;
+  width: 70px;
 }
 
 .card-bar-infos-right-pouce-orange{
@@ -103,13 +105,18 @@
 }
 
 .card-bar-category{
-  padding: 4px 10px;
+  text-align: center;
+  padding: 4px;
   font-style: italic;
-  font-size: 16px;
+  font-size: 10px;
   border-radius: 10px;
   background:$orange-mat;
   transition: background 0.3s ease;
   border: 1px solid $primary-grey;
+  position: absolute;
+  right: 230px;
+  top: -60px;
+  width: 80px;
 }
 
 .map-list {
@@ -121,6 +128,14 @@
 }
 
 .mapboxgl-canvas {
+  border-radius: 18px;
   height: 375px!important;
   width: 100%!important;
+}
+
+.bar-found{
+  text-align: center;
+  font-weight: bold;
+  color: $bleu;
+  font-size: 18px;
 }

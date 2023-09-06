@@ -14,16 +14,23 @@
             </div>
           <div class="d-flex justify-content-center mt-2">
             <% if @event.user == current_user %>
-              <p><%= link_to ('<i class="fa-solid fa-pen-to-square"></i> Edit').html_safe, edit_event_path(@event),class:"btn btn-small-white-blue ms-1"%></p>
-              <p><%= link_to  ('<i class="fa-solid fa-trash"></i> Delete').html_safe, event_path(@event),class:"btn btn-small-white-blue ms-1", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
+              <p><%= link_to ('<i class="fa-solid fa-pen-to-square"></i>').html_safe, edit_event_path(@event),class:"btn btn-small-white-blue ms-1"%></p>
+              <p><%= link_to  ('<i class="fa-solid fa-trash"></i>').html_safe, event_path(@event),class:"btn btn-small-white-blue ms-1", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
             <% end %>
           </div>
 
           <div class="card-map-list-recap">
             <div>
               <p> <strong>Pending : </strong><%= @event.participants.select { |user| user.status == nil}.map(&:user).map(&:first_name).join(", ") %></p>
-              <p><strong>Accepted : </strong><%= @event.participants.select { |user| user.status == "accept"}.map(&:user).map(&:first_name).join(", ") %></p>
-              <p><strong>Declined : </strong><%= @event.participants.select { |user| user.status == "decline"}.map(&:user).map(&:first_name).join(", ") %></p>
+              <%if (@event.participants.select { |user| user.status == "accept"}).count != 0 %>
+                <p><strong>Accepted : </strong><%= @event.participants.select { |user| user.status == "accept"}.map(&:user).map(&:first_name).join(", ") %></p>
+              <% end %>
+              <%if (@event.participants.select { |user| user.status == "decline"}).count != 0 %>
+                <p><strong>Declined : </strong><%= @event.participants.select { |user| user.status == "decline"}.map(&:user).map(&:first_name).join(", ") %></p>
+              <% end %>
+            </div>
+            <div class="bar-found">
+            <%= "#{@event_bars.count} bars found for your event" %>
             </div>
           </div>
 
@@ -43,7 +50,6 @@
                 <div class="card-bar-infos-left">
                   <h2><%= link_to "#{event_bar.bar.name}", bar_path(event_bar.bar) %> </h3>
                   <p><%= event_bar.bar.address%> </p>
-                  <span class="card-bar-category"><%= event_bar.bar.category%></span>
                 </div>
                 <div class="card-bar-infos-right">
                   <div class="card-bar-infos-right-pouce-orange">
@@ -51,8 +57,10 @@
                   </div>
 
                   <% if @event.user == current_user %>
-                    <p><%= link_to "Book this bar", event_bar_path(event_bar),class:"btn btn-small-blue" %></p>
+                    <p><%= link_to "Book", event_bar_path(event_bar),class:"btn btn-small-blue" %></p>
                   <% end %>
+
+                  <span class="card-bar-category"><%= event_bar.bar.category%></span>
 
                   <% if @participant.voted_for?(event_bar) %>
                     <p><%= link_to "Cancel my vote",
