@@ -1,6 +1,10 @@
 .navbar-lewagon {
   background: $bleu;
-  color:white
+  color:white;
+  height: 50px;
+  h1 {
+    font-family: 'Baskerville';
+  }
 }
 
 .navbar-lewagon a {
