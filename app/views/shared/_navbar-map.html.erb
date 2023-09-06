@@ -2,15 +2,15 @@
   <div class="container">
     <div class="back-button">
       <%= link_to :back do %>
-      <i class="fa-solid fa-circle-arrow-left fa-2xl" style="color: #ffffff;"></i>
+      <i class="fa-solid fa-circle-arrow-left fa-xl" style="color: #ffffff;"></i>
       <% end %>
     </div>
 
       <div class="form-check form-switch"  data-action="click->toggle#fire">
         <label class="form-check-label" for="flexSwitchCheckDefault">
           <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" data-search-events-target="button" placeholder="My events" checked>
-          <span data-toggle-target="map">Map</span>
-          <span class="d-none" data-toggle-target="list">List</span>
+          <span data-toggle-target="map">List</span>
+          <span class="d-none" data-toggle-target="list">Map</span>
         </label>
       </div>
 
@@ -18,7 +18,7 @@
       <div class="<%= 'd-none ' if @notification_counter == 0 %> me-2" data-notifications-subscription-target='counter'>
         <%= @notification_counter %>
       </div>
-      <%= link_to "", root_path, class: "fa-solid fa-bell fa-2xl", style:"color: #ffffff"%>
+      <%= link_to "", root_path, class: "fa-solid fa-bell fa-xl", style:"color: #ffffff"%>
     </div>
   </div>
 

@@ -75,6 +75,33 @@
     width: 40px;
 }
 
+.card-bar-infos-vote{
+  background-color: $beige;
+  padding:10px;
+  color: $bleu;
+  border-radius: 10px;
+  border:solid;
+  border-color: $bleu;
+  text-align: center;
+  font-size:12px;
+  position: absolute;
+  right: 0px;
+  top: -70px;
+}
+
+.card-bar-infos-right-pouce-orange{
+  background-color: $orange-vif;
+  border-radius: 50%;
+  border:solid;
+  border-color:white;
+  text-align: center;
+  font-size:26px;
+  position: absolute;
+  right: 0px;
+  top: -200px;
+  width: 40px;
+}
+
 .card-bar-category{
   padding: 4px 10px;
   font-style: italic;
