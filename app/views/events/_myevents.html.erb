@@ -4,7 +4,7 @@
       <div class="card-event justify-content-between">
         <div class="image">
           <%= link_to event_path(event) do %>
-            <%#= cl_image_tag Bar.find(event.bar_ids.first).photo.key, crop: :fit, class:"card-event-img"%>
+            <%= cl_image_tag Bar.find(event.bar_ids.first).photo.key, crop: :fit, class:"card-event-img"%>
           <% end %>
         </div>
         <div class="card-event-infos" style="width:50%">
@@ -46,7 +46,7 @@
       <div class="card-event justify-content-between">
         <div class="image">
           <%= link_to event_path(event) do %>
-            <%#= cl_image_tag Bar.find(event.bar_ids.first).photo.key, crop: :fit, class:"card-bar-img"%>
+            <%= cl_image_tag Bar.find(event.bar_ids.first).photo.key, crop: :fit, class:"card-bar-img"%>
           <% end %>
         </div>
         <div class="card-event-infos">
