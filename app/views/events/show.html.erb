@@ -37,7 +37,7 @@
             <% @event_bars.each do |event_bar| %>
             <div class="card-bar">
               <%= link_to(bar_path(event_bar.bar)) do %>
-                <%= cl_image_tag event_bar.bar.photo.key, crop: :fit, class:"card-bar-img"%>
+                <%#= cl_image_tag event_bar.bar.photo.key, crop: :fit, class:"card-bar-img"%>
               <% end %>
               <div class="card-bar-infos">
                 <div class="card-bar-infos-left">
