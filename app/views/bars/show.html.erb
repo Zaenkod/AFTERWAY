@@ -1,4 +1,8 @@
- <%= render "shared/navbar" %>
+<% content_for :meta_title, "#{@bar.name} - #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @bar.description %>
+<% content_for :meta_image, cl_image_path(@bar.photo.key) if @bar.photo.attached? %>
+
+<%= render "shared/navbar" %>
 <div class="container">
     <div class="card-bar">
         <div class="card-bar-img d-flex justify-content-center align-items-end" style="background-image: url('<%= cl_image_path @bar.photo.key, height: 300 %>')">
