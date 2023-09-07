@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
 
     @notification_counter = current_user.notifications.count
   end
+
+  def default_url_options
+    { host: ENV["www.afterway.me"] || "localhost:3000" }
+  end
 end
