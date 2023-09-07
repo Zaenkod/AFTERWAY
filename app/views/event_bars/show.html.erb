@@ -3,12 +3,22 @@
   <section class="mx-auto">
 
     <div class="card-bar">
-      <div class="align-items-end bg-image booking-div d-flex hover-overlay justify-content-center pb-4 ripple" data-mdb-ripple-color="light">
-        <div class="centered"><%= @event_bar.bar.name %></div>
+      <div class="align-items-end bg-image booking-div d-flex hover-overlay justify-content-center" data-mdb-ripple-color="light" style="background-image: url('<%= cl_image_path Bar.find(@event_bar.bar_id).photo.key %>')">
+        <div class="centered">
+          <%= @event_bar.bar.name %>
+        </div>
+
+        <%= simple_form_for (@event_bar), html: {class: "book-button"} do |f| %>
+        <div data-controller="book-button">
+          <%= f.hidden_field :status, value: "booked"%>
+          <span data-book-button-target="unbook" data-action="click->book-button#unbooked" class="btn btn-dark me-2" hidden>Unbook !</span>
+          <span data-action="click->book-button#booked" data-book-button-target="book"><%= f.button :submit, "Book 🎊", class:"btn btn-small-blue" %></span>
+        <% end %>
+        </div>
+
       </div>
         <div class="card-body-bar">
           <p><i class="fa-solid fa-location-crosshairs"></i><%= @event_bar.bar.address %></p>
-          <h3 class="card-title font-weight-bold"><p><%= @event_bar.bar.name %></p></h3>
             <div class="d-flex justify-content-around">
               <div class="Stars" style="--rating: 2.3;" aria-label="Rating of this product is 2.3 out of 5.">
               </div>
@@ -17,15 +27,9 @@
               <div class="card-bar-description d-flex justify-content-around align-items-center">
                 <p class="text-center"><i class="fa-solid fa-calendar-days"></i> <%= @event_bar.event.date.strftime("%a %e %b") %></p>
                 <p>|</p>
-                <p class="text-center"><i class="fa-regular fa-clock"></i> <%= @event_bar.event.hour.strftime("%H h %M") %></p>
+                <p class="text-center"><i class="fa-regular fa-clock"></i> <%= @event_bar.event.hour.strftime("%H h %M") %> </p>
               </div>
-                <p class="text-center m-3">Status : <%= @event_bar.status %></p>
-                <div class="text-center">
-                    <%= simple_form_for (@event_bar) do |f| %>
-                      <%= f.hidden_field :status, value: "booked"%>
-                      <%= f.button :submit, "Book this bar 🎊", class: "btn btn-small-white mb-3" %>
-                    <% end %>
-                </div>
+
         </div>
     </div>
   </section>

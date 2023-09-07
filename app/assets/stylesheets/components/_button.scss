@@ -73,9 +73,6 @@
   background: $bleu;
   transition: background 0.3s ease;
   border: 1px solid white;
-  position: absolute;
-  right: 235px;
-  top: -200px;
 }
 
 .button {
@@ -97,4 +94,11 @@
   border-color: #3276b1 !important;
   position: relative;
   top: 1px;
+}
+
+.book-button{
+  position: absolute;
+  border: 0;
+  right: 1rem;
+  transform: translateY(-50%);
 }
