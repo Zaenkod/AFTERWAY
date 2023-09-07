@@ -72,11 +72,11 @@
                 <div data-controller="answer" data-answer-event-id-value="<%= event.id %>" data-answer-participant-id-value="<%= current_user.find_participant(event).id %>">
                   <% unless current_user.find_participant(event).status == "accept" %>
                     <button data-status="accept" data-action="click->answer#accept" data-answer-target="accept" class="btn bg-white rounded-pill btn-sm fw-bolder" style="color:#1E3D59">Accept</button>
-                    <span data-answer-target="accepted" style="color:#FF6E40" class="fw-bold">Let's drink 🎉!</span>
+                    <span data-answer-target="accepted" style="color:#FF6E40" class="fw-bold d-none">Let's drink 🎉!</span>
                   <% end %>
                   <% unless current_user.find_participant(event).status == "decline" %>
                     <button data-status="decline" data-action="click->answer#decline" data-answer-target="decline" class="btn btn-outline-light rounded-pill btn-sm fw-bold">Decline</button>
-                    <span data-answer-target="refused" style="color:#FF6E40" class="fw-bold">Next time 🌞!</span>
+                    <span data-answer-target="refused" style="color:#FF6E40" class="fw-bold d-none">Next time 🌞!</span>
                   <% end %>
                     <button data-status="reset" data-action="click->answer#reset" data-answer-target="reset" class="btn btn-outline-light rounded-pill btn-sm fw-bold d-none">Cancel</button>
                 </div>
