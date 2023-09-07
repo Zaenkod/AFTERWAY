@@ -1,0 +1,83 @@
+.toggle-btn-text {
+  width: 95px; // largeur du bouton globale
+  height: 36px; // pareil en hauteur
+  position: relative;
+  top: 50%;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 9999px;
+  .knobs,
+  .layer {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+  }
+  .knobs {
+    z-index: 2;
+    span {
+      background-color: $orange-vif; // couleur de base du machin qui toggle
+      width: 42px; // largeur de base du machin qui toggle
+      height: 90%; // hauteur de base du machin qui toggle
+      z-index: 2;
+      padding: 0;
+      top: auto;
+      position: absolute;
+      border-radius: 9999px;
+      transition: 0.3s ease all;
+      left: 2px;
+    }
+  }
+  .layer {
+    background-color: #ebf7fc; // couleur du background global par défaut
+    width: 100%;
+    transition: 0.3s ease all;
+    z-index: 1;
+  }
+  .checkbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+  }
+  .knobs:before,
+  .knobs:after {
+    width: 30px; // largeur des text holders
+    font-size: 1rem; // taille de la police des textes
+    padding: 9px 4px; // padding des elements texte
+    color: #4e4e4e; // couleur des textes
+    font-weight: bold; // Graisse des textes
+    position: absolute;
+    text-align: center;
+    line-height: 1;
+    border-radius: 2px;
+    transition: 0.3s ease all;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .knobs:before {
+    content: "Map"; // self explicit
+    left: 10px; // self explicit
+  }
+  .knobs:after {
+    content: "List"; // self explicit
+    right: 8px; // self explicit
+  }
+  .checkbox:checked {
+    // second état lorsque bouton checked
+    &+.knobs span {
+      right: 2px;
+      left: auto !important;
+      background-color: $orange-vif; // couleur du machin qui toggle quand checked
+    }
+    &~.layer {
+      background-color: #fcebeb; // couleur du background global quand checked
+    }
+  }
+}
