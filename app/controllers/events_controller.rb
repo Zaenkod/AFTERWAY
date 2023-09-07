@@ -12,7 +12,7 @@ class EventsController < ApplicationController
     @event.user = @user
 
     if @event.save
-      Participant.create!(event: @event, user: current_user)
+      Participant.create!(event: @event, user: current_user, status: "accept")
       if @event.address.present?
         @event.bars << Bar.near(@event.address, @event.distance)
       else
