@@ -59,7 +59,7 @@ user6 = User.create!(
 # Génerer 10 faux noms d'évenements
 event_names = [
   "Technology Innovation Conference",
-  "Local Art Exhibition",
+  "After Batch Party",
   "Professional Networking Meetup",
   "Creative Cooking Workshop",
   "Personal Development Seminar",
@@ -229,7 +229,7 @@ puts "Create 5 event for each bar organized by la N avec toute l'équipe"
   Participant.create!(event: event, user: user4)
   Participant.create!(event: event, user: user5)
   Participant.create!(event: event, user: user6)
-  Participant.create!(event: event, user: user1)
+  Participant.create!(event: event, user: user1, status: "accept")
   barycenter = event.geocode_center
   event.bars << Bar.near(barycenter, event.distance)
 end
@@ -244,7 +244,7 @@ puts "Create 5 event organized by le M avec toute l'équipe sans le P"
     price: rand(0..5),
     title: event_names.sample
     )
-  Participant.create!(event: event, user: user4)
+  Participant.create!(event: event, user: user4, status: "accept")
   Participant.create!(event: event, user: user1)
   Participant.create!(event: event, user: user3)
   Participant.create!(event: event, user: user6)
