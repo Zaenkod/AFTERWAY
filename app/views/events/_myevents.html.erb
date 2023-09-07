@@ -1,21 +1,61 @@
-<div data-search-events-target="list" style="background-color:#F5F0E1">
+<div data-search-events-target="list" style="background-color:#F5F0E1; margin-bottom:110px">
   <div data-search-events-target="host">
-    <% @host_events.each do |event| %>
-      <div class="card-event justify-content-between">
-        <div class="image">
-          <%= link_to event_path(event) do %>
-            <%= cl_image_tag Bar.find(event.bar_ids.first).photo.key, crop: :fit, class:"card-event-img"%>
-          <% end %>
-        </div>
-        <div class="card-event-infos" style="width:50%">
-          <div class="row">
-            <div class="col flex-column ">
-              <h2> <%= link_to "#{event.title}", event_path(event), class:"text-decoration-none fw-bold", style:"color:white"%></h2>
+    <div class="justify-content-around">
+      <% @host_events.each do |event| %>
+        <div class="card-event">
+          <div class="image">
+            <%= link_to event_path(event) do %>
+              <%= cl_image_tag Bar.find(event.bar_ids.first).photo.key, crop: :fit, class:"card-event-img"%>
+            <% end %>
+          </div>
+          <div class="card-event-infos">
+            <div class="row">
+              <div class="col">
+                <h2> <%= link_to "#{event.title}", event_path(event), class:"text-decoration-none fw-bold mb-3", style:"color:white"%></h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <span style="font-size:12px; color:#1E3D59">
+                  <strong>
+                    <i class="fa-solid fa-calendar-days"></i> <%= event.date.strftime("%a %e %b") %>
+                    &nbsp;
+                    <i class="fa-regular fa-clock"></i> <%= event.hour.strftime("%H h %M") %>
+                    &nbsp;
+                    <i class="fa-solid fa-people-group"></i> <%= event.users.count %>
+                  </strong>
+                </span>
+              </div>
+            </div>
+            <div class="row mt-1">
+              <div class="col">
+                  <span class="rounded-pill border p-1 fw-bold" style="background-color:white; color:#1E3D59; font-size:12px"><%= event.status %></span>
+              </div>
             </div>
           </div>
-          <div class="row d-flex">
-            <div class="col d-flex">
-              <span style="font-size:12px; color:#1E3D59">
+        </div>
+      <% end %>
+  </div>
+ </div>
+
+  <div data-search-events-target="invit" class="d-none">
+    <div class="justify-content-around">
+      <% @invitation_events.each do |event| %>
+        <div class="card-event">
+          <div class="image">
+            <%= link_to event_path(event) do %>
+              <%= cl_image_tag Bar.find(event.bar_ids.first).photo.key, crop: :fit, class:"card-bar-img"%>
+            <% end %>
+          </div>
+          <div class="card-event-infos">
+            <div class="row">
+              <div class="col flex-column ">
+                <h2> <%= link_to "#{event.title}", event_path(event), class:"text-decoration-none fw-bold", style:"color:white"%></h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <span style="font-size:12px; color:#1E3D59">
                 <strong>
                   <i class="fa-solid fa-calendar-days"></i> <%= event.date.strftime("%a %e %b") %>
                   &nbsp;
@@ -23,73 +63,29 @@
                   &nbsp;
                   <i class="fa-solid fa-people-group"></i> <%= event.users.count %>
                 </strong>
-              </span>
-            </div>
-          </div>
-          <div class="row d-flex">
-            <div class="col">
-                <span class="rounded-pill border ps-3 pe-3" style="background-color:white; color:#1E3D59; font-size:12px"><strong><%= event.status %></strong></span>
-            </div>
-          </div>
-        </div>
-        <div class="icon" style="margin-top: 35px; width:17%">
-          <%= link_to event_path(event) do %>
-            <i class="fa-regular fa-circle-right fa-3x" style="color:white"></i>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
-  </div>
 
-  <div data-search-events-target="invit" class="d-none">
-    <% @invitation_events.each do |event| %>
-      <div class="card-event justify-content-between">
-        <div class="image">
-          <%= link_to event_path(event) do %>
-            <%= cl_image_tag Bar.find(event.bar_ids.first).photo.key, crop: :fit, class:"card-bar-img"%>
-          <% end %>
-        </div>
-        <div class="card-event-infos">
-          <div class="row">
-            <div class="col flex-column ">
-              <h2> <%= link_to "#{event.title}", event_path(event), class:"text-decoration-none fw-bold", style:"color:white"%></h2>
-              <span style="font-size:12px; color:#1E3D59">🫅 Hosted by <strong><%= event.user.first_name %></strong></span>
+                </span>
+              </div>
             </div>
-          </div>
-          <div class="row d-flex">
-            <div class="col">
-              <span style="font-size:12px; color:#1E3D59">
-              <strong>
-                <i class="fa-solid fa-calendar-days"></i> <%= event.date.strftime("%a %e %b") %>
-                &nbsp;
-                <i class="fa-regular fa-clock"></i> <%= event.hour.strftime("%H h %M") %>
-                &nbsp;
-                <i class="fa-solid fa-people-group"></i> <%= event.users.count %>
-              </strong>
-
-              </span>
-            </div>
-          </div>
-          <div class="row d-flex mt-2">
-            <div class="col d-flex justify-content-around">
-              <p data-controller="answer" data-answer-event-id-value="<%= event.id %>" data-answer-participant-id-value="<%= current_user.find_participant(event).id %>">
-                <% unless current_user.find_participant(event).status == "accept" %>
-                  <button data-action="click->answer#accept" data-status="accept" data-answer-target="accept" class="btn bg-white rounded-pill btn-sm fw-bolder" style="color:#1E3D59">Accept</button>
-                <% end %>
-                <% unless current_user.find_participant(event).status == "decline" %>
-                  <button data-action="click->answer#decline" data-status="decline" data-answer-target="decline" class="btn btn-outline-light rounded-pill btn-sm fw-bold">Decline</button>
-                <% end %>
-              <button data-action="click->answer#reset" data-status="reset" data-answer-target="reset" class="btn btn-outline-light rounded-pill btn-sm fw-bold">Reset</button></p>
+            <div class="row d-flex mt-3">
+              <div class="col d-flex justify-content-around">
+                <div data-controller="answer" data-answer-event-id-value="<%= event.id %>" data-answer-participant-id-value="<%= current_user.find_participant(event).id %>">
+                  <% unless current_user.find_participant(event).status == "accept" %>
+                    <button data-status="accept" data-action="click->answer#accept" data-answer-target="accept" class="btn bg-white rounded-pill btn-sm fw-bolder" style="color:#1E3D59">Accept</button>
+                    <span data-answer-target="accepted" style="color:#FF6E40" class="fw-bold">Let's drink 🎉!</span>
+                  <% end %>
+                  <% unless current_user.find_participant(event).status == "decline" %>
+                    <button data-status="decline" data-action="click->answer#decline" data-answer-target="decline" class="btn btn-outline-light rounded-pill btn-sm fw-bold">Decline</button>
+                    <span data-answer-target="refused" style="color:#FF6E40" class="fw-bold">Next time 🌞!</span>
+                  <% end %>
+                    <button data-status="reset" data-action="click->answer#reset" data-answer-target="reset" class="btn btn-outline-light rounded-pill btn-sm fw-bold d-none">Cancel</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="icon" style="margin-top: 35px; width:17%">
-          <%= link_to event_path(event) do %>
-            <i class="fa-regular fa-circle-right fa-3x" style="color:white"></i>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
 <%= render "shared/footer" %>
