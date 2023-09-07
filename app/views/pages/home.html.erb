@@ -1,8 +1,8 @@
 <div data-controller="search-events">
   <div class="banner">
     <h1 class="mt-3">AFTERWAY</h1>
-    <div class="row justify-content-center">
-      <div class="col-sm-8 my-3">
+    <div>
+      <div class="col">
         <div class="search justify-content-center p-3 mt-5">
             <%= form_with url: myevents_path, method: :get, html: {class: "d-flex rounded", data: {search_events_target: "form"} } do |f|%>
               <button type="submit" id="submit"  class="border-0" style = "background-color:#1E3D59; color:#FFC13B">
@@ -19,7 +19,7 @@
                 }
               %>
             <% end %>
-          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -53,6 +53,7 @@
         </div>
     </div>
   </div>
-</div>
+
 <% end %>
 <%= render "shared/homefooter" %>
+</div>

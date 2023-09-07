@@ -4,16 +4,15 @@
   background: #FFC13B;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
-  // align-items: center;
-  border-radius: 40px;
+  border-radius: 25px;
   margin-bottom: 20px;
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-right: 12px;
+  margin-left: 12px;
 }
 
 .card-event img {
   height: 100%;
-  width: 110px;
+  width: 120px;
   object-fit: cover;
 }
 
@@ -32,10 +31,9 @@
 
 
 .card-event .card-event-infos {
-  margin : 10px;
   color: white;
   font-size: 16px;
-  // padding: 16px;
+  padding: 16px;
 }
 .card-new-form {
   color: $primary-grey;
