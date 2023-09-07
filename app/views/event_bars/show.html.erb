@@ -10,7 +10,7 @@
           <p><i class="fa-solid fa-location-crosshairs"></i><%= @event_bar.bar.address %></p>
           <h3 class="card-title font-weight-bold"><p><%= @event_bar.bar.name %></p></h3>
             <div class="d-flex justify-content-around">
-              <div class="Stars" style="--rating: 2.3;" aria-label="Rating of this product is 2.3 out of 5.">
+              <div class="Stars" style="--rating: <%= @event_bar.bar.rating %>;" aria-label="Rating of this product is <%= @event_bar.bar.rating %> out of 5.">
               </div>
                 <p class="text-muted"><%= @event_bar.bar.rating %></p>
             </div>
