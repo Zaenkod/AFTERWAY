@@ -28,7 +28,7 @@ user3 = User.create!(
   first_name: "Cédric",
   last_name: "Ruault",
   address: "12 Rue Philippe de Champagne, Paris",
-  email: "cédric@gmail.com",
+  email: "cedric@gmail.com",
   password: "123456"
 )
 

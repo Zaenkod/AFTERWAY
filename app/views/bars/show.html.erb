@@ -7,7 +7,7 @@
           <div class="card-body-bar">
             <p class='text-center'><%= @bar.address %></p>
               <div class="d-flex justify-content-around">
-                <div class="Stars" style="--rating: 2.3;" aria-label="Rating of this product is 2.3 out of 5.">
+                <div class="Stars" style="--rating: <%= @bar.rating %>;" aria-label="Rating of this product is <%= @bar.rating %> out of 5.">
                 </div>
                   <p class="text-muted"><%= @bar.rating %></p>
               </div>
@@ -18,12 +18,12 @@
             <hr class="my-4" />
 
             <p class="lead text-center"><strong>Opening hours</strong></p>
-            <ul class="list-unstyled list-inline d-flex justify-content-between">
+            <ul class="list-unstyled list-inline d-flex justify-content-around">
               <li class="list-inline-item me-0">
-                <div class="chip me-0"> <%= @bar.opening_hours %></div>
+                <div class="chip me-0"> <%= @bar.opening_hours.first(2)%>h<%=  @bar.opening_hours.last(2) %></div>
               </li>
               <li class="list-inline-item me-0">
-                <div class="chip me-0"> <%= @bar.closing_hours %></div>
+                <div class="chip me-0"> <%= @bar.closing_hours.first(2) %>h<%= @bar.closing_hours.last(2) %></div>
               </li>
             </ul>
           </div>
