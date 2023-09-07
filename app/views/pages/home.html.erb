@@ -28,13 +28,15 @@
       <h1 class="text-center p-3">Welcome Back
         <strong><%= User.find(current_user.id).first_name %>!</strong>
       </h1>
-      <div class="form-check form-switch d-flex justify-content-center mb-3"  data-action="click->search-events#fire">
-        <label class="form-check-label" for="flexSwitchCheckDefault">
-          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" data-search-events-target="button" checked>
-          <span class="host" data-search-events-target="organizer">Organizer</span>
-          <span class="invit d-none" data-search-events-target="guest">Guest</span>
-        </label>
+
+    <div class="toggle-btn-text-home mb-3" data-action="click->search-events#fire">
+      <input type="checkbox" class="checkbox" data-search-events-target="button" />
+      <div class="knobs border border-2 border-dark d-flex align-items-center">
+        <span></span>
       </div>
+      <div class="layer"></div>
+    </div>
+
       <%= render "events/myevents"%>
     </div>
 </div>

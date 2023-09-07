@@ -1,5 +1,5 @@
 .toggle-btn-text-home {
-  width: 95px; // largeur du bouton globale
+  width: 140px; // largeur du bouton globale
   height: 36px; // pareil en hauteur
   position: relative;
   top: 50%;
@@ -16,7 +16,7 @@
     z-index: 2;
     span {
       background-color: $orange-vif; // couleur de base du machin qui toggle
-      width: 42px; // largeur de base du machin qui toggle
+      width: 65px; // largeur de base du machin qui toggle
       height: 90%; // hauteur de base du machin qui toggle
       z-index: 2;
       padding: 0;
@@ -46,7 +46,7 @@
   .knobs:before,
   .knobs:after {
     width: 30px; // largeur des text holders
-    font-size: 1rem; // taille de la police des textes
+    font-size: 12px; // taille de la police des textes
     padding: 9px 4px; // padding des elements texte
     color: #4e4e4e; // couleur des textes
     font-weight: bold; // Graisse des textes
@@ -62,12 +62,12 @@
     align-items: center;
   }
   .knobs:before {
-    content: "Map"; // self explicit
-    left: 10px; // self explicit
+    content: "Guest"; // self explicit
+    left: 20px; // self explicit
   }
   .knobs:after {
-    content: "List"; // self explicit
-    right: 8px; // self explicit
+    content: "Organizer"; // self explicit
+    right: 20px; // self explicit
   }
   .checkbox:checked {
     // second état lorsque bouton checked
