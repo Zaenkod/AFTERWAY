@@ -43,6 +43,13 @@
   height: 200px;
   width: 100%;
   object-fit: cover;
+  h3 {
+    color: white;
+    text-align: center;
+    font-family: 'Concert One', cursive;
+    -webkit-text-stroke: 0.5px #1E3D59;
+    font-size: 30px;
+  }
 }
 
 .card-bar-infos{
