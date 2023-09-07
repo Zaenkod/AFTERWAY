@@ -78,10 +78,23 @@
   top: -200px;
 }
 
-.btn-btn-primary {
+.button {
   background-color: #1E3D59;
   color: white;
   border-color: #3276b1;
   border-radius: 25px;
+}
 
+.button:hover{
+  background-color: #3276b1;
+  color: white;
+  border-color: #3276b1;
+}
+
+.button:active{
+  background-color: #3276b1 !important;
+  color: white !important;
+  border-color: #3276b1 !important;
+  position: relative;
+  top: 1px;
 }

@@ -15,11 +15,11 @@
             <%= f.input :category, placeholder:"Enter a category",label: ('<i class="fa-solid fa-wine-glass-empty"></i>
             <i class="fa-solid fa-martini-glass-empty"></i>
             <i class="fa-solid fa-beer-mug-empty"></i>  Category ').html_safe  %>
-            <%= f.input :price, placeholder:"Enter a price", label: ('<i class="fa-solid fa-coins"> </i> Price ').html_safe%>
+            <%= f.input :price, collection: (1..5), placeholder:"Enter a price range (1 = cheapest)", label: ('<i class="fa-solid fa-coins"> </i> Price ').html_safe%>
             <%= f.input :address, placeholder:"Enter an address", label: ('<i class="fa-solid fa-map-pin"> </i> Address ').html_safe, hint: 'If blank, your account address will be used' %>
             <%= f.association :users, placeholder:"Participant(s)", collection: @users, label: ('<i class="fa-solid fa-users"> </i> Add participants ').html_safe, label_method: :unique_user, input_html: {data: {controller: "autocomplete"}} %>
             <div class="banner-create">
-              <%= f.button :submit, class: "btn-btn-primary"  %>
+            <%= f.button :submit, class: "button"  %>
             </div>
           </div>
         </div>
