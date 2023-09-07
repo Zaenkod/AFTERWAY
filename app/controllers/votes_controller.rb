@@ -8,7 +8,7 @@ class VotesController < ApplicationController
     @vote = Vote.new(participant: @participant, event_bar: @event_bar)
     if @vote.save
       # Blabliblou happy path
-      redirect_to event_path(@event), notice: "You have voted for #{@event_bar.bar.name}!"
+      redirect_to event_path(@event) # notice: "You have voted for #{@event_bar.bar.name}!"
     else
       # Bloublehblah unhappy path
       redirect_to event_path(@event), notice: "Your vote for #{@event_bar.bar.name} could not be registered, here's why: #{@event_bar.errors.full_messages.join(', ')}"
