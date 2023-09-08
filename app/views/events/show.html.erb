@@ -7,13 +7,14 @@
       <div class="col flex-fill d-flex">
         <div class="card-map-list flex-fill">
           <h1><%= @event.title %></h1>
-            <div class="d-flex justify-content-center">
-              <strong>
-                <i class="fa-solid fa-calendar-days"></i> <%= @event.date.strftime("%a %e %b") %>
-                <i class="fa-regular fa-clock"></i> <%= @event.hour.strftime("%H h %M") %>
-                <i class="fa-solid fa-people-group"></i> <%= @event.users.count %>
-              </strong>
-            </div>
+          <div class="d-flex justify-content-center">
+            <strong>
+              <i class="fa-solid fa-calendar-days"></i> <%= @event.date.strftime("%a %e %b") %>
+              <i class="fa-regular fa-clock"></i> <%= @event.hour.strftime("%H h %M") %>
+              <i class="fa-solid fa-people-group"></i> <%= @event.users.count %>
+            </strong>
+          </div>
+
           <div class="d-flex justify-content-center mt-2">
             <% if @event.user == current_user %>
               <p><%= link_to ('<i class="fa-solid fa-pen-to-square"></i>').html_safe, edit_event_path(@event),class:"btn btn-small-white-blue ms-1"%></p>
@@ -32,7 +33,7 @@
               <% end %>
             </div>
             <div class="bar-found">
-            <%= "#{@event_bars.count} bars found for your event" %>
+              <%= "#{@event_bars.count} bars found for your event" %>
             </div>
           </div>
 
@@ -44,66 +45,68 @@
 
           <span data-toggle-target="togglableCard">
             <% @event_bars.each do |event_bar| %>
-            <div class="card-bar">
-              <%= link_to(bar_path(event_bar.bar)) do %>
-                <%= cl_image_tag event_bar.bar.photo.key, crop: :fit, class:"card-bar-img"%>
-              <% end %>
-              <div class="card-bar-infos">
-                <div class="card-bar-infos-left">
-                  <h2><%= link_to "#{event_bar.bar.name}", bar_path(event_bar.bar) %> </h3>
-                  <p><%= event_bar.bar.address%> </p>
-                </div>
-                <div class="card-bar-infos-right">
-                  <div class="card-bar-infos-right-pouce-orange">
-                      <i class="fa-solid fa-thumbs-up" style="color: #ffffff;"></i>
+              <div class="card-bar">
+                <%= link_to(bar_path(event_bar.bar)) do %>
+                  <%= cl_image_tag event_bar.bar.photo.key, crop: :fit, class:"card-bar-img"%>
+                <% end %>
+
+                <div class="card-bar-infos">
+                  <div class="card-bar-infos-left">
+                    <h2><%= link_to "#{event_bar.bar.name}", bar_path(event_bar.bar) %> </h3>
+                    <p><%= event_bar.bar.address%> </p>
                   </div>
 
-                  <% if @event.user == current_user %>
-                    <p><%= link_to "Book", event_bar_path(event_bar),class:"btn btn-small-blue" %></p>
-                  <% end %>
+                  <div class="card-bar-infos-right">
+                    <div class="card-bar-infos-right-pouce-orange">
+                      <i class="fa-solid fa-thumbs-up" style="color: #ffffff;"></i>
+                    </div>
 
-                  <span class="card-bar-category"><%= event_bar.bar.category%></span>
+                    <% if @event.user == current_user %>
+                      <p><%= link_to "Book", event_bar_path(event_bar),class:"btn btn-small-blue" %></p>
+                    <% end %>
 
-                  <% if @participant.voted_for?(event_bar) %>
-                    <p><%= link_to "Cancel my vote",
-                                    vote_path(event_bar.votes.find_by(participant: @participant)),
-                                    class: "btn btn-small-white2",
-                                    data: {
-                                      turbo_method: :delete # ici on dit à Turbo de lancer une requête en méthode POST plutôt qu'en GET
-                                    } %></p>
-                    <p class="">You have voted for this bar!</p>
-                  <% elsif @participant.votes.count < 3 %>
-                    <%# l'ancien lien, qui sans paramètre est par défaut en methode http GET %>
+                    <span class="card-bar-category"><%= event_bar.bar.category%></span>
 
-                    <%# Ici on crée un lien en méthode POST pour atteindre l'action VotesController#create %>
-                    <div class="card-bar-infos-right-pouce">
-                      <%= link_to(event_bar_votes_path(event_bar), data: {
-                                            turbo_method: :post # ici on dit à Turbo de lancer une requête en méthode POST plutôt qu'en GET
-                                          }) do %>
-                        <i class="fa-solid fa-thumbs-up" style="color: #ffffff;"></i>
+                    <% if @participant.voted_for?(event_bar) %>
+                      <p><%= link_to "Cancel my vote",
+                                      vote_path(event_bar.votes.find_by(participant: @participant)),
+                                      class: "btn btn-small-white2",
+                                      data: {
+                                        turbo_method: :delete # ici on dit à Turbo de lancer une requête en méthode POST plutôt qu'en GET
+                                      } %></p>
+                      <p class="">You have voted for this bar!</p>
+                    <% elsif @participant.votes.count < 3 %>
+                      <%# l'ancien lien, qui sans paramètre est par défaut en methode http GET %>
+
+                      <%# Ici on crée un lien en méthode POST pour atteindre l'action VotesController#create %>
+                      <div class="card-bar-infos-right-pouce">
+                        <%= link_to(event_bar_votes_path(event_bar), data: {
+                                              turbo_method: :post # ici on dit à Turbo de lancer une requête en méthode POST plutôt qu'en GET
+                                            }) do %>
+                          <i class="fa-solid fa-thumbs-up" style="color: #ffffff;"></i>
+                        <% end %>
+                      </div>
+                    <% end %>
+
+                    <div class="card-bar-infos-vote">
+                      <% if event_bar.votes.count == 0 %>
+                        <%= "#{event_bar.votes.count} vote" %>
+                      <% else %>
+                        <%= "#{event_bar.votes.count} votes" %>
                       <% end %>
                     </div>
-                  <% end %>
+                    <%# On n'affiche le lien de vote uniquement si l'utilisateur n'a pas encore voté pour cet event bar: %>
+                    <%# la méthode "voted_for?" est définie dans le modèle participant %>
+                    <%# @participant est défini dans EventsController#show %>
 
-                  <div class="card-bar-infos-vote">
-                    <% if event_bar.votes.count == 0 %>
-                      <%= "#{event_bar.votes.count} vote" %>
-                    <% else %>
-                      <%= "#{event_bar.votes.count} votes" %>
-                    <% end %>
                   </div>
-                  <%# On n'affiche le lien de vote uniquement si l'utilisateur n'a pas encore voté pour cet event bar: %>
-                  <%# la méthode "voted_for?" est définie dans le modèle participant %>
-                  <%# @participant est défini dans EventsController#show %>
-
                 </div>
               </div>
-            </div>
             <% end %>
           </span>
         </div>
       </div>
     </div>
   </div>
-<div style="margin-top: 100px;"><%= render "shared/homefooter" %></div>
+  <div style="margin-top: 100px;"><%= render "shared/homefooter" %></div>
 </span>
