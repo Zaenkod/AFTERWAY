@@ -67,7 +67,7 @@
                 </span>
               </div>
             </div>
-            <div class="row d-flex mt-3">
+            <div class="row d-flex" style="margin-top:5px">
               <div class="col d-flex justify-content-around">
                 <div data-controller="answer" data-answer-event-id-value="<%= event.id %>" data-answer-participant-id-value="<%= current_user.find_participant(event).id %>">
                   <% unless current_user.find_participant(event).status == "accept" %>
