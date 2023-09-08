@@ -27,11 +27,6 @@
                 </span>
               </div>
             </div>
-            <div class="row mt-1">
-              <div class="col">
-                  <span class="rounded-pill border p-1 fw-bold" style="background-color:white; color:#1E3D59; font-size:12px"><%= event.status %></span>
-              </div>
-            </div>
           </div>
         </div>
       <% end %>
@@ -67,8 +62,8 @@
                 </span>
               </div>
             </div>
-            <div class="row d-flex mt-3">
-              <div class="col d-flex justify-content-around">
+            <div class="row d-flex ms-3" style="margin-top:5px">
+              <div class="col d-flex justify-content-between">
                 <div data-controller="answer" data-answer-event-id-value="<%= event.id %>" data-answer-participant-id-value="<%= current_user.find_participant(event).id %>">
                   <% unless current_user.find_participant(event).status == "accept" %>
                     <button data-status="accept" data-action="click->answer#accept" data-answer-target="accept" class="btn bg-white rounded-pill btn-sm fw-bolder" style="color:#1E3D59">Accept</button>
