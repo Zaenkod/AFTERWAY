@@ -11,7 +11,7 @@
         <%= simple_form_for (@event_bar), html: {class: "book-button"} do |f| %>
         <div data-controller="book-button">
           <%= f.hidden_field :status, value: "booked"%>
-          <span data-book-button-target="unbook" data-action="click->book-button#unbooked" class="btn btn-dark me-2" hidden>Unbook !</span>
+          <span data-book-button-target="unbook" data-action="click->book-button#unbooked" class="btn btn-dark me-2 border" hidden>Unbook !</span>
           <span data-action="click->book-button#booked" data-book-button-target="book"><%= f.button :submit, "Book 🎊", class:"btn btn-small-blue" %></span>
         <% end %>
         </div>

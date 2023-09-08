@@ -8,11 +8,11 @@
 
     <h1>AFTERWAY</h1>
 
-    <div class="d-flex align-items-center">
-      <div class="<%= 'd-none ' if @notification_counter == 0 %> me-2" data-notifications-subscription-target='counter'>
-        <%= @notification_counter %>
-      </div>
+     <div class="d-flex align-items-center position-relative">
       <%= link_to "", root_path, class: "fa-solid fa-bell fa-xl", style:"color: #ffffff"%>
+      <div class="<%= 'd-none ' if @notification_counter == 0 %> me-2" data-notifications-subscription-target='counter'>
+         <span class="position-absolute  start-100 translate-middle badge border border-light rounded-circle bg-danger p-1" style="font-size:10px; top: -9px"><%= @notification_counter %></span>
+      </div>
     </div>
   </div>
 
