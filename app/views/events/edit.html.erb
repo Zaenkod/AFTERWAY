@@ -16,7 +16,7 @@
           <%= f.input :price, label: ('<i class="fa-solid fa-coins"> </i> Price ').html_safe%>
           <%= f.association :users, collection: @users, label: ('<i class="fa-solid fa-users"> </i> Add participants ').html_safe, label_method: :unique_user %>
           <div class="banner-create">
-            <%= f.button :submit, class: "btn-small-white"  %>
+            <%= f.button :submit, class: "button"  %>
           </div>
         <% end %>
       </div>

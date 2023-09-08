@@ -54,7 +54,7 @@ class EventsController < ApplicationController
       if @event.address.present?
         @event.bars << Bar.near(@event.address, @event.distance)
       else
-        geocode_center
+        @barycenter = @event.geocode_center
         @event.bars << Bar.near(@barycenter, @event.distance)
       end
       redirect_to event_path(@event)
