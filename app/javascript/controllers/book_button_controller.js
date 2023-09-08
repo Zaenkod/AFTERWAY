@@ -10,7 +10,7 @@ export default class extends Controller {
   booked(){
     this.bookTarget.innerText = "Booked 🎊";
     this.bookTarget.classList.remove("btn-small-blue");
-    this.bookTarget.classList.add("btn", "btn-success");
+    this.bookTarget.classList.add("btn", "btn-success", "border");
     this.unbookTarget.hidden = false
   }
 
